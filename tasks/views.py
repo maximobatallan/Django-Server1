@@ -154,18 +154,18 @@ def limpiar_carrito_item(request,producto_id):
     producto = Producto.objects.get(id=producto_id)
     carrito.limpiaritem(producto)
     return redirect("cart")
-
+@csrf_protect
 def galeriaprueba(request):
     productos = Producto.objects.all()
    
     return render(request, "gallery.html", {'productos': productos})
-
+@csrf_protect
 def detalleproducto(request,producto_id):
     producto = Producto.objects.get(id=producto_id)
     print(type(producto))
     return render(request, "productdetails.html", {'productos': producto})
     
-    
+@csrf_protect   
 def cart(request):
         
         return render(request, "cart.html")
