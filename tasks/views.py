@@ -6,7 +6,8 @@ from django.db import IntegrityError
 from .forms import TaskForm
 from .models import Task, Producto
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required, csrf_protect
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 from .carrito import Carrito
 
