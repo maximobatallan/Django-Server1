@@ -15,7 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from tasks import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', views.home, name='home'),
+    path('signup/', views.signup, name='signup'),
+    path('tasks/', views.tasks, name='tasks'),
+    path('logout/', views.signout, name='logout'),
+    path('signin/', views.signin, name='signin'),
+    path('tasks/create/', views.create_task, name='create_task'),
+    path('tasks/<int:task_id>/', views.task_detail, name='task_detail'),
+    path('tasks/<int:task_id>/complete', views.complete_task, name='complete_task'),
+    path('tasks/<int:task_id>/delete', views.delete, name='delete'),
+    path('tasks_completed/', views.taskcomplete, name='taskcomplete'),
+    path('tienda/', views.tienda, name='Tienda'),
+    path('agregar/<int:producto_id>/', views.agregar_producto, name="Add"),
+    path('eliminar/<int:producto_id>/', views.eliminar_producto, name="Del"),
+    path('restar/<int:producto_id>/', views.restar_producto, name="Sub"),
+    path('limpiaritems/<int:producto_id>/', views.limpiar_carrito_item, name="CLSK"),
+    path('limpiar/', views.limpiar_carrito, name="CLS"),
+    path('gallery/', views.galeriaprueba, name='gallery'),
+    path('productdetails/<int:producto_id>/', views.detalleproducto, name='PD'),
+    path('cart/', views.cart, name='cart'),
+    ]
