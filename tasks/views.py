@@ -11,12 +11,13 @@ from django.contrib.auth.decorators import login_required
 from .carrito import Carrito
 
 
-
+@csrf_protect
 def home(request):
     productos = Producto.objects.all()
    
     return render(request, 'home.html',{'productos': productos})
-
+    
+@csrf_protect
 def signup(request):
     if request.method == 'GET':
         
@@ -41,13 +42,13 @@ def tasks(request):
     tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
     return render (request, 'tasks.html', {'tasks': tasks})
 
-
+@csrf_protect
 @login_required
 def signout(request):
     logout(request)
     return redirect('home')
 
-
+@csrf_protect
 def signin(request):
     if request.method == 'GET':
         return render (request, 'signin.html',{'form': AuthenticationForm})
@@ -58,6 +59,7 @@ def signin(request):
         else:
             login(request, user)
             return redirect('tasks')
+
 
 @login_required
 def create_task(request):
@@ -73,7 +75,8 @@ def create_task(request):
             return redirect('tasks')
         except ValueError:
             return render(request, 'create_task.html', {'form': TaskForm, 'error':'Por favor ingresos los datos validos'})
-        
+
+
 @login_required
 def task_detail(request, task_id):
     if request.method == 'GET':
@@ -110,10 +113,11 @@ def taskcomplete (request):
 
     return render(request, 'tasks.html', {'tasks': tasks})
 
-
+@csrf_protect
 def tienda(request):
     productos = Producto.objects.all()
     return render(request, "tienda.html", {'productos': productos})
+
 
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
