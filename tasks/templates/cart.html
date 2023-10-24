@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load static%}
+{% block head %}
+    {{ block.super }}
+    
+    <!-- easyzoom css -->
+    <link rel="stylesheet" href="{% static 'css/easyzoom.css' %}">
+      <!-- slicknav css -->
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <!-- jquery ui css -->
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <!-- animate css -->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  
+    
+{% endblock %}
+
+
+
+        {% block content %}
+              <!--  Cart Table Start  --> 
+      <div class="cart-table">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-12">
+               {% if request.session.carrito.items %}
+                 <div class="table-responsive">
+                    <table class="table table-bordered">
+                       <thead>
+                          <tr>
+                             <th scope="col">Action</th>
+                             <th scope="col">Image</th>
+                             <th scope="col">Title</th>
+                             <th scope="col">Price</th>
+                             <th scope="col">Quantity</th>
+                             <th scope="col">Total</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+
+                        
+                        {% for key, value in request.session.carrito.items %}
+                          <tr>
+                             <td class="action">
+                             
+                                <a href="{% url 'CLSK' key %}"><i class="far fa-trash-alt"></i></a>
+                             </td>
+                             <td>
+                              <img src="{% static 'media/' %}{{ value.imagen }}" alt="{{ producto.nombre }}" width="200" class="table-img">
+                              
+                             </td>
+                             <td class="title"><a class="title" href="product-details.html">{{ value.nombre }}</a></td>
+                             <td class="price">
+                              <del>${{ value.precioanterior }}</del>
+
+                                <span>{{ value.precio }}</span>
+                             </td>
+                             <td>
+                                <input class="quantity" type="number" name="quantity" value={{ value.cantidad }} min="1">
+                             </td>
+                             <td class="total"><span>{{ value.acumulado }}</span></td>
+                          </tr>
+                     {% endfor %}
+                     <td colspan="6">
+                        <div class="cartbtn-container">
+                           <a class="cartbtn shop" href="category.html">Go To Shopping</a>
+                           <a class="cartbtn cart" href="checkout.html">Proceed to Checkout</a>
+                           <button class="cartbtn cart" type="submit">Update Cart</button>
+  {% else %}
+                         
+
+          <div class="alert alert-danger text-center"> Sin Productos </div>
+          <a class="cartbtn shop" href="/gallery/" style="text-align: left;">Go To Gallery</a>
+
+
+  {% endif %}
+                                </div>
+                             </td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
+               
+              </div>
+           </div>
+        </div>
+     </div>
+     <!--  Cart Table Area End  --> 
+     
+     
+     <!--  Cart Cards Area End  -->    
+     <div class="cart-cards">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-6 mb-5 mb-lg-0">
+                 <div class="card">
+                    <div class="card-header">
+                       <h5>Coupon</h5>
+                    </div>
+                    <div class="card-body">
+                       <form class="coupon-form" action="#">
+                          <p>Please apply a coupon to get a attractive discount</p>
+                          <div class="coupon-input">
+                             <input type="text" name="coupon" placeholder="Enter coupon code">
+                             <button type="submit">Apply</button>
+                          </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-lg-6">
+                 <div class="card">
+                    <div class="card-header">
+                       <h5>Cart Totals</h5>
+                    </div>
+                    <div class="card-body">
+                       <div class="row">
+                          <div class="col-lg-6">
+                             <div class="form-element">
+                                <label>Shipping Method :</label>
+                                <select name="shipping">
+                                   <option value="London" selected>In London</option>
+                                   <option value="around">Around London</option>
+                                   <option value="world">Around The World</option>
+                                </select>
+                             </div>
+                          </div>
+                          <div class="col-lg-6">
+                             <div class="form-element">
+                                <label>Payment Type :</label>
+                                <select name="shipping">
+                                   <option value="cash" selected>Cash on Delivery</option>
+                                   <option value="advance">Advance Payment</option>
+                                </select>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="calculations">
+                          <div class="single-calc">
+                             <strong>Cart Amount</strong>
+                             <span>$ 2070.00</span>
+                          </div>
+                          <div class="single-calc">
+                             <strong>Discount</strong>
+                             <span>- $ 270.00</span>
+                          </div>
+                          <div class="single-calc">
+                             <strong>Subtotal</strong>
+                             <span>$ 1800.00</span>
+                          </div>
+                          <div class="single-calc">
+                             <strong>Shipping Charge</strong>
+                             <span>$ 10.00</span>
+                          </div>
+                          <div class="single-calc">
+                             <strong>Tax</strong>
+                             <span>$ 100.00</span>
+                          </div>
+                          <div class="single-calc total">
+                             <strong>Total</strong>
+                             <span>$ 1910.00</span>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!--  Cart Cards Area End  --> 
+     
+     
+
+        
+      <script src="{% static 'js/popper.min.js' %}"></script>
+      <!-- bootstrap js -->
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <!-- owl carousel js -->
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+      <!-- isotope js -->
+      <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+      <!-- isotope js -->
+      
+
+      <script src="{% static 'js/pricing-range.js' %}"></script>
+      <!-- easyzoom js -->
+      
+      <script src="{% static 'js/easyzoom.js' %}"></script>
+    
+     
+      <!-- slicknav js -->
+      <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+      <!-- jquery ui js -->
+      <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+      <!-- wow js -->
+      
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <!-- main js -->
+      <script src="{% static 'js/main.js' %}"></script>
+        {% endblock %}
