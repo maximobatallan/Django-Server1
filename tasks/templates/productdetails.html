@@ -42,9 +42,8 @@
                   </div>
                   <div class="product-thumb-slider owl-carousel owl-theme">
                      <div class="single-product">
-                        <img  src="https://imgec.s3.sa-east-1.amazonaws.com/products/product_1.jpg" alt="{{ producto.nombre }}">
-                        <img  src="https://imgec.s3.sa-east-1.amazonaws.com/products/product_1.jpg" alt="{{ producto.nombre }}">
-                        
+                        <img class="small" src="{% static 'media/' %}{{ productos.imagen }}" alt="{{ productos.nombre }}">
+                        <img class="big" src="{% static 'media/' %}{{ productos.imagen }}" alt="{{ productos.nombre }}">
                      </div>
                      
                      <div class="single-product">
@@ -139,7 +138,7 @@
                               <input type="number" name="quantity" placeholder="Quantity" min="1">
                            </div>
                            <div class="col-lg-6">
-                              <button class="addtocart">Add to Cart</button>
+                              
                            </div>
                         </div>
                         <div class="actions">
@@ -170,7 +169,8 @@
                </div>
             </div>
          </div>
-         
+         <a href="{% url 'Add' productos.id  %}" class="btn btn-primary">Agregar al carrito</a>
+         <a href="{% url 'cart'  %}" class="btn btn-primary">Ir a carrito</a>
          
         
                <!--   Product Details Tabs Start    -->
