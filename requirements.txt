@@ -6,3 +6,4 @@ sqlparse==0.4.2
 whitenoise==6.2.0
 Pillow==10.1.0
 django-storages==1.1.8
+boto3==1.17.54
