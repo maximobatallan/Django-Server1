@@ -71,7 +71,7 @@
                      <div class="desc">
                         <p>{{ productos.descripcion }}</p>
                      </div>
-                     <form method="POST" class="product-details-form" action="">
+                     <form method="POST" class="product-details-form" action="{% url 'signin' %}">
                         {% csrf_token %}
                         <div class="row">
                            <div class="col-lg-6">
@@ -149,20 +149,52 @@
                         </div>
                         <div class="actions">
                            <div class="row">
+                              {% if not user.is_authenticated %}
                               <div class="col-lg-4">
-                                 <button formaction="{% url 'Add' productos.id %}" class="wishlist">
+                                 
+                                 
+
+                                 <button name="submit_post" formaction="{% url 'Add' productos.id %}" class="wishlist">
+                                    <i class="far fa-heart"></i>Agregar a Carrito</button>
+                              </div>
+                 
+                              <div class="col-lg-4">
+
+                              </div>
+                              
+                              <div class="col-lg-4">
+                                
+                                    <button name="submit_get" formaction="{% url 'signin' %}"class="wishlist">
+                                    <i class="far fa-heart"></i>Iniciar Sesión</button>
+
+                             </div>
+                               
+
+                            
+                                 {% else %}
+                              <div class="col-lg-4">
+                                 <button name="submit_post" formaction="{% url 'Add' productos.id %}" class="wishlist">
                                     <i class="far fa-heart"></i>Agregar a Carrito</button>
                               </div>
                               <div class="col-lg-4">
-                                 
-                              </div>
-                              <div class="col-lg-4">
-                                 <button formaction="{% url 'cart' %}"> 
-                                 <i class="fas fa-shopping-cart"></i>Ir a Pagar
-                              </button>
 
-                                 
                               </div>
+                              {% if request.session.carrito.items %}
+                              
+                              <div class="col-lg-4">
+                                 <button name="submit_post" formaction="{% url 'cart' %}"> 
+                                 <i class="fas fa-shopping-cart"></i>Ir a Pagar </button></div>
+                                 {% else %}
+
+                              <div class="col-lg-4">
+
+                              </div>
+
+
+                              
+                              {% endif %}
+                             
+                              {% endif %}
                            </div>
                         </div>
                      </form>
