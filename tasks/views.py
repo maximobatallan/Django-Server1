@@ -173,14 +173,19 @@ def detalleproducto(request,producto_id):
 def cart(request):
     precioanterior = 0
     total = 0
-    
+    cantidad = 0
+    desc = 0
+    total_aum = 0
     for key, value in request.session["carrito"].items():
-            
+        print(value)
         precioanterior += int(value["precioanterior"])
         total += int(value["acumulado"])
-   
-    desc = precioanterior - total
+        cantidad += int(value["cantidad"])
+        desc += (precioanterior * cantidad  - total)
+        total_aum += (precioanterior * cantidad )
     
-    return render(request, "cart.html", {'precioanterior': precioanterior, 'desc': desc} )
+    
+   
+    return render(request, "cart.html", {'precioanterior': precioanterior, 'desc': desc,'desc': desc, 'total_aum': total_aum} )
 
     
