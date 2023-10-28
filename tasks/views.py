@@ -7,18 +7,16 @@ from .forms import TaskForm
 from .models import Task, Producto
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 from .carrito import Carrito
 
 
-@csrf_protect
+
 def home(request):
     productos = Producto.objects.all()
    
-    return render(request, 'home.html',{'productos': productos})
-    
-@csrf_protect
+    return render(request, 'gallery.html',{'productos': productos})
+
 def signup(request):
     if request.method == 'GET':
         
@@ -27,7 +25,8 @@ def signup(request):
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                user = User.objects.create_user(
+                    request.POST["username"], password=request.POST["password1"])
                 user.save()
                 login(request, user)
                 return redirect('tasks')
@@ -35,7 +34,7 @@ def signup(request):
                 return render(request, 'signup.html',{'form': UserCreationForm, "error":'Usuario ya existe'})
             
             
-        return render(request, 'signup.html',{'form': UserCreationForm, "error":'Pass no coinciden'})
+        return render(request, 'signup.html',{'form': UserCreationForm, "error":'La contraseña de verificación no coincide.'})
 
 
 @login_required 
@@ -43,24 +42,24 @@ def tasks(request):
     tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
     return render (request, 'tasks.html', {'tasks': tasks})
 
-@csrf_protect
+
 @login_required
 def signout(request):
     logout(request)
     return redirect('home')
 
-@csrf_protect
+
 def signin(request):
     if request.method == 'GET':
-        return render (request, 'signin.html',{'form': AuthenticationForm})
+        return render(request, 'signin.html', {"form": AuthenticationForm})
     else:
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        user = authenticate(
+            request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             return render (request, 'signin.html',{'form': AuthenticationForm, "error":'Usuario o pass incorrecto'})
         else:
             login(request, user)
             return redirect('tasks')
-
 
 @login_required
 def create_task(request):
@@ -76,8 +75,7 @@ def create_task(request):
             return redirect('tasks')
         except ValueError:
             return render(request, 'create_task.html', {'form': TaskForm, 'error':'Por favor ingresos los datos validos'})
-
-
+        
 @login_required
 def task_detail(request, task_id):
     if request.method == 'GET':
@@ -114,25 +112,25 @@ def taskcomplete (request):
 
     return render(request, 'tasks.html', {'tasks': tasks})
 
-@csrf_protect
+
 def tienda(request):
     productos = Producto.objects.all()
     return render(request, "tienda.html", {'productos': productos})
 
-
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
-    print(producto.imagen)
+    
     carrito.agregar(producto)
-    return redirect("Tienda")
-
+    
+    #return render(request, "productdetails.html", {'productos': producto})
+    return redirect("PD", producto_id=producto_id)
 
 
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
-    print(carrito)
+    
     carrito.eliminar(producto)
    
     return redirect("cart")
@@ -154,20 +152,29 @@ def limpiar_carrito_item(request,producto_id):
     producto = Producto.objects.get(id=producto_id)
     carrito.limpiaritem(producto)
     return redirect("cart")
-@csrf_protect
+
 def galeriaprueba(request):
     productos = Producto.objects.all()
    
     return render(request, "gallery.html", {'productos': productos})
-@csrf_protect
+
 def detalleproducto(request,producto_id):
     producto = Producto.objects.get(id=producto_id)
-    print(type(producto))
+   
     return render(request, "productdetails.html", {'productos': producto})
     
-@csrf_protect   
-def cart(request):
-        
-        return render(request, "cart.html")
     
+def cart(request):
+    precioanterior = 0
+    total = 0
+    
+    for key, value in request.session["carrito"].items():
+            
+        precioanterior += int(value["precioanterior"])
+        total += int(value["acumulado"])
+   
+    desc = precioanterior - total
+    
+    return render(request, "cart.html", {'precioanterior': precioanterior, 'desc': desc} )
+
     

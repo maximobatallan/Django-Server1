@@ -15,9 +15,11 @@ class Task(models.Model):
     
 class Producto(models.Model):
     nombre = models.CharField(max_length=64)
-    categoria = models.CharField(max_length=32)
+    descripcion = models.TextField(blank=True)
     precio = models.IntegerField()
     imagen = models.ImageField(upload_to='products/', null=True, blank=True)
+    imagen1 = models.ImageField(upload_to='products/', null=True, blank=True)
+    imagen2 = models.ImageField(upload_to='products/', null=True, blank=True)
 
     def __str__(self):
         return f"{self.nombre}: {self.precio}"
