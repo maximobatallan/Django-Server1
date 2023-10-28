@@ -70,14 +70,14 @@
                      {% endfor %}
                      <td colspan="6">
                         <div class="cartbtn-container">
-                           <a class="cartbtn shop" href="category.html">Galleria</a>
+                           <a class="cartbtn shop" href="{% url 'gallery' %}">Galeria</a>
                            <a class="cartbtn cart" href="checkout.html">Ir a Pagar</a>
                            <button class="cartbtn cart" type="submit">Actualizar Carrito</button>
   {% else %}
                          
 
           <div class="alert alert-danger text-center"> Sin Productos </div>
-          <a class="cartbtn shop" href="/gallery/" style="text-align: left;">Galleria</a>
+          <a class="cartbtn shop" href="{% url 'gallery' %}" style="text-align: left;">Galeria</a>
 
 
   {% endif %}
@@ -145,7 +145,7 @@
                        <div class="calculations">
                           <div class="single-calc">
                              <strong>Total Carrito</strong>
-                             <span>$ {{ precioanterior }}</span>
+                             <span>$ {{ total_aum }}</span>
                           </div>
                           <div class="single-calc">
                              <strong>Descuento 20% Off</strong>
