@@ -39,59 +39,7 @@
     <body>
         <!--   header area start   -->
       <div class="header-area">
-        <div class="info-bar">
-           <div class="container">
-              <div class="row">
-                 <div class="col-lg-5 col-8">
-                    <ul class="social-links">
-                        <li>
-                            <a href="/">Home</i></a> 
-                        </li>
-                        {% if user.is_authenticated %}
-                            
-                  
-                            <li><a href="{% url 'gallery' %}">Galeria</i></a></li>
-                      
-                            <li><a href="{% url 'PD' 5 %}">Productos</i></a></li>
-                       
-                            
-                   
-                            <li><a href="{% url 'logout' %}">Logout</i></a></li>
-                        {% endif %}
-            
-                        {% if not user.is_authenticated %}
-                        
-                            <li><a href="{% url 'signin' %}">Registrarse</i></a></li>
-            
-                            <li><a href="{% url 'signup' %}">Iniciar Sesión</i></a></li>
-                        
-                        {% endif %}
-                      
-                    </ul>
-                 </div>
-                 <div class="col-lg-7 col-4">
-                    <div class="right-content">
-                      
-                       
-                          <ul class="social-links">
-                        
-            
-                           {% if not user.is_authenticated %}
-                              <li><a href="{% url 'signup' %}">Registrarse</i></a></li>
-                              
-                              <li><a href="{% url 'signin' %}">Iniciar Sesión</i></a></li>
-                           {% endif %}
-                           
-                           {% if user.is_authenticated %}
-                           <li><a href="{% url 'logout' %}">Cerrar Sesión</i></a></li>
-                           {% endif %}
-                         
-                       </ul>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
+    
            <div class="support-nav-area">
             
             <div class="container">
@@ -115,8 +63,8 @@
                                        <div class="left-content"><i class="flaticon-call"></i></div>
                                        <div class="right-content">
                                           <div class="right-content-inner">
-                                             <h5>Free Call</h5>
-                                             <p>+ 00 12 123 456</p>
+                                             <h5>Contactanos</h5>
+                                             <p>+ 549 2392-7033</p>
                                           </div>
                                        </div>
                                     </div>
@@ -125,13 +73,13 @@
                                     <div class="support-info">
                                        <div class="left-content"><i class="flaticon-email"></i></div>
                                        <div class="right-content">
-                                          <h5>Mail us</h5>
-                                          <p>Support@mail.com </p>
+                                          <h5>Mail</h5>
+                                          <p>aev@aev.com </p>
                                        </div>
                                     </div>
                                  </div>
                                  <div class="col-lg-4">
-                                    <a href="quote.html" class="boxed-btn"><span>Get a Quote</span></a>
+                                    <a href="quote.html" class="boxed-btn"><span>Contactanos</span></a>
                                  </div>
                               </div>
                            </div>
@@ -143,11 +91,11 @@
                               <nav class="main-menu" id="mainMenu">
                                  <ul>
                                     <li>
-                                       <a href="#">Inicio</a>
+                                       <a href="/">Inicio</a>
                                        
                                     </li>
                                     <li>
-                                       <a href="about.html">Galleria</a>
+                                       <a href="{% url 'gallery' %}">Galleria</a>
                                     </li>
                                     <li class="dropdown">
                                        <a href="#">Categoria</a>
@@ -157,10 +105,15 @@
                                        </ul>
                                     </li>
                                     <li>
-                                       <a href="#">Productos</a>
-                                    </li>
-                                    <li>
-                                       <a href="#">Contacto</a>
+                                       {% if not user.is_authenticated %}
+                                          <li><a href="{% url 'signup' %}">Registrarse</i></a></li>
+                                          
+                                          <li><a href="{% url 'signin' %}">Iniciar Sesión</i></a></li>
+                                       {% endif %}
+                                       
+                                       {% if user.is_authenticated %}
+                                          <li><a href="{% url 'logout' %}">Cerrar Sesión</i></a></li>
+                                       {% endif %}
                                     </li>
                                  </ul>
                               </nav>
@@ -171,7 +124,11 @@
                                  <li class="search-icon"><a href="#"><i class="flaticon-search"></i></a></li>
                                  <li class="shopping-icon">
                                     <a href="{% url 'cart'  %}"><i class="flaticon-shopping-cart-black-shape"></i></a>
-                                    <span class="count">{{ cantidad }}</span>
+                                    <a href="{% url 'cart' %}">
+                                       <span class="count">{{ cantidad }}</span>
+                                   </a>
+                                   
+                                   
                                  </li>
                               </ul>
                            </div>

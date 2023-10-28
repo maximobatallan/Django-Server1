@@ -32,11 +32,11 @@
                     <table class="table table-bordered">
                        <thead>
                           <tr>
-                             <th scope="col">Action</th>
-                             <th scope="col">Image</th>
-                             <th scope="col">Title</th>
-                             <th scope="col">Price</th>
-                             <th scope="col">Quantity</th>
+                             <th scope="col">Borrar</th>
+                             <th scope="col">Imagen</th>
+                             <th scope="col">Titulo</th>
+                             <th scope="col">Precio</th>
+                             <th scope="col">Cantidad</th>
                              <th scope="col">Total</th>
                           </tr>
                        </thead>
@@ -50,31 +50,34 @@
                                 <a href="{% url 'CLSK' key %}"><i class="far fa-trash-alt"></i></a>
                              </td>
                              <td>
-                              <img src="{% static 'media/' %}{{ value.imagen }}" alt="{{ producto.nombre }}" width="200" class="table-img">
+                              <a href="{% url 'PD' key %}">
+                                 <img src="https://imgec.s3.sa-east-1.amazonaws.com/{{ value.imagen }}" width="200" class="table-img">
+                             </a>
+                             
                               
                              </td>
-                             <td class="title"><a class="title" href="product-details.html">{{ value.nombre }}</a></td>
+                             <td class="title"><a class="title" href="{% url 'PD' key %}">{{ value.nombre }}</a></td>
                              <td class="price">
                               <del>${{ value.precioanterior }}</del>
 
-                                <span>{{ value.precio }}</span>
+                                <span>$ {{ value.precio }}</span>
                              </td>
                              <td>
                                 <input class="quantity" type="number" name="quantity" value={{ value.cantidad }} min="1">
                              </td>
-                             <td class="total"><span>{{ value.acumulado }}</span></td>
+                             <td class="total"><span>$ {{ value.acumulado }}</span></td>
                           </tr>
                      {% endfor %}
                      <td colspan="6">
                         <div class="cartbtn-container">
-                           <a class="cartbtn shop" href="category.html">Go To Shopping</a>
-                           <a class="cartbtn cart" href="checkout.html">Proceed to Checkout</a>
-                           <button class="cartbtn cart" type="submit">Update Cart</button>
+                           <a class="cartbtn shop" href="category.html">Galleria</a>
+                           <a class="cartbtn cart" href="checkout.html">Ir a Pagar</a>
+                           <button class="cartbtn cart" type="submit">Actualizar Carrito</button>
   {% else %}
                          
 
           <div class="alert alert-danger text-center"> Sin Productos </div>
-          <a class="cartbtn shop" href="/gallery/" style="text-align: left;">Go To Gallery</a>
+          <a class="cartbtn shop" href="/gallery/" style="text-align: left;">Galleria</a>
 
 
   {% endif %}
@@ -115,13 +118,13 @@
               <div class="col-lg-6">
                  <div class="card">
                     <div class="card-header">
-                       <h5>Cart Totals</h5>
+                       <h5>Total Carrito</h5>
                     </div>
                     <div class="card-body">
                        <div class="row">
                           <div class="col-lg-6">
                              <div class="form-element">
-                                <label>Shipping Method :</label>
+                                <label>Envio</label>
                                 <select name="shipping">
                                    <option value="London" selected>In London</option>
                                    <option value="around">Around London</option>
@@ -131,7 +134,7 @@
                           </div>
                           <div class="col-lg-6">
                              <div class="form-element">
-                                <label>Payment Type :</label>
+                                <label>Tipo de Pago:</label>
                                 <select name="shipping">
                                    <option value="cash" selected>Cash on Delivery</option>
                                    <option value="advance">Advance Payment</option>
@@ -141,24 +144,20 @@
                        </div>
                        <div class="calculations">
                           <div class="single-calc">
-                             <strong>Cart Amount</strong>
-                             <span>$ 2070.00</span>
+                             <strong>Total Carrito</strong>
+                             <span>$ {{ precioanterior }}</span>
                           </div>
                           <div class="single-calc">
-                             <strong>Discount</strong>
-                             <span>- $ 270.00</span>
+                             <strong>Descuento 20% Off</strong>
+                             <span>- $ {{ desc }}</span>
                           </div>
                           <div class="single-calc">
                              <strong>Subtotal</strong>
-                             <span>$ 1800.00</span>
+                             <span>$ {{ total_carrito }}</span>
                           </div>
                           <div class="single-calc">
-                             <strong>Shipping Charge</strong>
+                             <strong>Envio</strong>
                              <span>$ 10.00</span>
-                          </div>
-                          <div class="single-calc">
-                             <strong>Tax</strong>
-                             <span>$ 100.00</span>
                           </div>
                           <div class="single-calc total">
                              <strong>Total</strong>
@@ -173,7 +172,7 @@
      </div>
      <!--  Cart Cards Area End  --> 
      
-     
+     {% include "footer.html" %}
 
         
       <script src="{% static 'js/popper.min.js' %}"></script>

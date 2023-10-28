@@ -42,13 +42,18 @@
                   </div>
                   <div class="product-thumb-slider owl-carousel owl-theme">
                      <div class="single-product">
-                        <img class="small" src="{% static 'media/' %}{{ productos.imagen }}" alt="{{ productos.nombre }}">
-                        <img class="big" src="{% static 'media/' %}{{ productos.imagen }}" alt="{{ productos.nombre }}">
+                        <img class="small" src="https://imgec.s3.sa-east-1.amazonaws.com/{{ productos.imagen }}" alt="{{ productos.nombre }}" width="20">
+                        <img class="big" src="https://imgec.s3.sa-east-1.amazonaws.com/{{ productos.imagen }}" alt="{{ productos.nombre }}" width="20">
                      </div>
                      
                      <div class="single-product">
-                        <img class="small" src="{% static 'img/product_8.jpg' %}" alt="">
-                        <img class="big" src="{% static 'img/product_8.jpg' %}" alt="">
+                        <img class="small" src="https://imgec.s3.sa-east-1.amazonaws.com/{{ productos.imagen1 }}" alt="{{ productos.nombre }}" width="20">
+                        <img class="big" src="https://imgec.s3.sa-east-1.amazonaws.com/{{ productos.imagen1 }}" alt="{{ productos.nombre }}" width="20">
+                     </div>
+
+                     <div class="single-product">
+                        <img class="small" src="https://imgec.s3.sa-east-1.amazonaws.com/{{ productos.imagen2}}" alt="{{ productos.nombre }}" width="20">
+                        <img class="big" src="https://imgec.s3.sa-east-1.amazonaws.com/{{ productos.imagen2 }}" alt="{{ productos.nombre }}" width="20">
                      </div>
                   </div>
                </div>
@@ -64,9 +69,10 @@
                         <del>{{ productos.precioanterior }}</del>
                      </div>
                      <div class="desc">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <p>{{ productos.descripcion }}</p>
                      </div>
-                     <form class="product-details-form" action="">
+                     <form method="POST" class="product-details-form" action="">
+                        {% csrf_token %}
                         <div class="row">
                            <div class="col-lg-6">
                               <div class="filter color">
@@ -144,19 +150,24 @@
                         <div class="actions">
                            <div class="row">
                               <div class="col-lg-4">
-                                 <button class="wishlist"><i class="far fa-heart"></i>Add to Wishlist</button>
+                                 <button formaction="{% url 'Add' productos.id %}" class="wishlist">
+                                    <i class="far fa-heart"></i>Agregar a Carrito</button>
                               </div>
                               <div class="col-lg-4">
-                                 <button class="compare"><i class="fas fa-sliders-h"></i>Add to Compare</button>
+                                 
                               </div>
                               <div class="col-lg-4">
-                                 <button><i class="fas fa-shopping-cart"></i>Buy It Now</button>
+                                 <button formaction="{% url 'cart' %}"> 
+                                 <i class="fas fa-shopping-cart"></i>Ir a Pagar
+                              </button>
+
+                                 
                               </div>
                            </div>
                         </div>
                      </form>
                      <div class="social-share">
-                        <h4>Share this item : </h4>
+                        <h4>Compartir producto</h4>
                         <ul>
                            <li><a href="" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
                            <li><a href="" class="twitter"><i class="fab fa-twitter"></i></a></li>
@@ -169,20 +180,16 @@
                </div>
             </div>
          </div>
-         <a href="{% url 'Add' productos.id  %}" class="btn btn-primary">Agregar al carrito</a>
-         <a href="{% url 'cart'  %}" class="btn btn-primary">Ir a carrito</a>
-         
+
         
                <!--   Product Details Tabs Start    -->
                <div class="container product-infos">
                   <div class="row">
                      <div class="col-lg-9">
                         <nav>
-                           <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-                              <a class="nav-item nav-link active" id="specifications-tab" data-toggle="tab" href="#specifications" role="tab" aria-controls="specifications" aria-selected="false">Specifications</a>
-                              <a class="nav-item nav-link" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-                              <a class="nav-item nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-                              <a class="nav-item nav-link" id="wreview-tab" data-toggle="tab" href="#wreview" role="tab" aria-controls="wreview" aria-selected="false">Write Review</a>
+                           <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                              <a class="nav-item nav-link active" id="specifications-tab" data-toggle="tab" href="#specifications" role="tab" aria-controls="specifications" aria-selected="false">Cantidad</a>
+              
                            </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
@@ -212,90 +219,6 @@
                                  </tbody>
                               </table>
                            </div>
-                           <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                           </div>
-                           <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                              <div class="avg-rating">
-                                 <div class="row">
-                                    <div class="col-12">
-                                       <h2>4.3/5</h2>
-                                       <p>Based on 3 reviews</p>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="comments">
-                                 <div class="single-comment">
-                                    <div class="avatar">
-                                       <img src="assets/img/person-1.jpg" alt="">
-                                    </div>
-                                    <div class="content">
-                                       <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et risus vel risus malesuada pulvin non sit amet arcu. Aliquam erat volutpat.</p>
-                                       <div class="bottom-content">
-                                          <div class="date"><span class="date">Aug 23, 2019</span> @ <span class="time">2:12 AM</span></div>
-                                          <div class="rate">
-                                             <div class="rating" style="width:100%"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="single-comment">
-                                    <div class="avatar">
-                                       <img src="assets/img/person-2.jpg" alt="">
-                                    </div>
-                                    <div class="content">
-                                       <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et risus vel risus malesuada pulvinar non sit amet arcu. Aliquam erat volutpat.</p>
-                                       <div class="bottom-content">
-                                          <div class="date"><span class="date">Sep 23, 2018</span> @ <span class="time">2:12 AM</span></div>
-                                          <div class="rate">
-                                             <div class="rating" style="width:100%"></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="tab-pane fade" id="wreview" role="tabpanel" aria-labelledby="wreview-tab">
-                              <form class="review-form" action="#">
-                                 <h2>Give a Review</h2>
-                                 <div class="row">
-                                    <div class="col-lg-12">
-                                       <p class="text-center">Rating out of 5</p>
-                                       <div id="rateYo"></div>
-                                       <div class="counter"></div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                       <div class="form-element"><input type="text" name="name" placeholder="Name"></div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                       <div class="form-element"><input type="text" name="email" placeholder="Email"></div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                       <div class="form-element">
-                                          <textarea name="comment" id="" cols="30" rows="10" placeholder="Comment"></textarea>
-                                       </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                       <div class="form-element text-center mb-0">
-                                          <button type="submit"><span>Submit</span></button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-3">
-                        <div class="vendor-info">
-                           <span class="d-block text-center">Sold By</span>
-                           <h5>Maarif Autos</h5>
-                           <h3>67 Item(s)</h3>
-                           <div class="rate">
-                              <div class="rating" style="width:100%"></div>
-                           </div>
-                           <a href="category.html" class="visitbtn">Visit Store</a>
                         </div>
                      </div>
                   </div>
@@ -306,21 +229,7 @@
             
             
             <!--   cta section start    -->
-            <div class="cta-section cta-bg">
-               <div class="container">
-                  <div class="cta-container">
-                     <div class="row align-items-center">
-                        <div class="col-lg-9">
-                           <h2 class="mb-lg-0 text-center text-lg-left">Reach your destination 100% safe & secure</h2>
-                        </div>
-                        <div class="col-lg-3 text-center text-lg-right">
-                           <a href="contact.html" class="boxed-btn"><span>Contact Us</span></a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="cta-overlay"></div>
-            </div>
+            {% include "footer.html" %}
             <!--   cta section end    -->
             <!-- popper js -->
         
@@ -347,7 +256,7 @@
       <!-- jquery ui js -->
       <script src="{% static 'js/jquery-ui.min.js' %}"></script>
       <!-- wow js -->
-      src="{% static 'js/wow.min.js' %}"
+      
       <script src="{% static 'js/wow.min.js' %}"></script>
       <!-- main js -->
       <script src="{% static 'js/main.js' %}"></script>
