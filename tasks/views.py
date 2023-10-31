@@ -125,19 +125,11 @@ def tienda(request):
     return render(request, "tienda.html", {'productos': productos})
 
 def agregar_producto(request, producto_id):
-    if not request.session["carrito"]:
-        carrito = Carrito(request)
-        producto = Producto.objects.get(id=producto_id)
-        carrito.agregar(producto)
-       
-        return redirect("cart")
-    else:
-        carrito = Carrito(request)
-        producto = Producto.objects.get(id=producto_id)
-        carrito.agregar(producto)
-       
-        return redirect("PD", producto_id=producto_id)
-
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.agregar(producto)
+    return redirect("cart")
+ 
 
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
@@ -187,38 +179,41 @@ def cart(request):
     subtotal = 0
     total_aum = 0
     preference_data = { "items": [] }
-    for key, value in request.session["carrito"].items():
-       
-        precioanterior = int(value["precioanterior"])
-        cantidad = int(value["cantidad"])
-        desc += int(precioanterior * cantidad)
-        total_aum += int(precioanterior * cantidad)
-        subtotal += int(value["precio"]*value["cantidad"])
+    if "carrito" in request.session and request.session["carrito"]:
+        for key, value in request.session["carrito"].items():
+        
+            precioanterior = int(value["precioanterior"])
+            cantidad = int(value["cantidad"])
+            desc += int(precioanterior * cantidad)
+            total_aum += int(precioanterior * cantidad)
+            subtotal += int(value["precio"]*value["cantidad"])
+            
+        
+            item = {
+                        "title": value["nombre"],
+                        "quantity": cantidad,
+                        "unit_price": int(value["precio"]),
+                    }
         
     
-        item = {
-                    "title": value["nombre"],
-                    "quantity": cantidad,
-                    "unit_price": int(value["precio"]),
-                }
-     
- 
-        preference_data["items"].append(item)
-    desc= int(total_aum - subtotal)   
-    
-    sdk = mercadopago.SDK("APP_USR-5213772683732349-061323-dc5bd7f2a56c2080735653bb6d1901e7-97277305")
-    preference_data["back_urls"] = {
-    "success": "https://www.tu-sitio/success",
-    "failure": "https://www.tu-sitio/failure",
-    "pending": "https://www.tu-sitio/pendings"
-}
-    preference_data["auto_return"] = "approved"
-    
-    
-    preference_response = sdk.preference().create(preference_data)
-    preference = preference_response["response"]
-    
-    return render(request, "checkout.html", {'preference_id': preference['id'], 'precioanterior': precioanterior, 'desc': desc, 'subtotal': subtotal,'desc': desc, 'total_aum': total_aum} )
+            preference_data["items"].append(item)
+        desc= int(total_aum - subtotal)
+        total_compra = int(subtotal + 10)
+        
+        sdk = mercadopago.SDK("APP_USR-5213772683732349-061323-dc5bd7f2a56c2080735653bb6d1901e7-97277305")
+        preference_data["back_urls"] = {
+        "success": "https://www.tu-sitio/success",
+        "failure": "https://www.tu-sitio/failure",
+        "pending": "https://www.tu-sitio/pendings"
+    }
+        preference_data["auto_return"] = "approved"
+        
+        
+        preference_response = sdk.preference().create(preference_data)
+        preference = preference_response["response"]
+        
+        return render(request, "cart.html", {'preference_id': preference['id'], 'precioanterior': precioanterior,'total_compra': total_compra, 'desc': desc, 'subtotal': subtotal,'desc': desc, 'total_aum': total_aum} )
 
-
-    
+    else: 
+        
+        return redirect("gallery")
