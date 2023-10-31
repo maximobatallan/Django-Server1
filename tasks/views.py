@@ -30,7 +30,7 @@ def signup(request):
                     request.POST["username"], password=request.POST["password1"])
                 user.save()
                 login(request, user)
-                return redirect('tasks')
+                return redirect('gallery')
             except IntegrityError:
                 return render(request, 'signup.html',{'form': UserCreationForm, "error":'Usuario ya existe'})
             
@@ -66,7 +66,7 @@ def signin(request):
                 
 
                 login(request, user)
-                return redirect('tasks')
+                return redirect('gallery')
 
 @login_required
 def create_task(request):
