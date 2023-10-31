@@ -253,7 +253,7 @@
                <div class="col-lg-12">
                   <div class="card">
                      <div class="card-header">
-                        <h5>Cart Totals</h5>
+                        <h5>Detalle de Compra</h5>
                      </div>
                      <div class="card-body">
                         <div class="calculations">
@@ -275,24 +275,24 @@
                            </div>
                            <div class="single-calc total">
                               <strong>Total</strong>
-                              <span>$ 1910.00</span>
+                              <span>$ {{ total_compra }}</span>
                            </div>
                         </div>
                         <form class="coupon-form mt-4" action="#">
                            <div class="row">
                               <div class="col-lg-4">
                                  <div class="coupon-input">
-                                    <input type="text" name="coupon" placeholder="Enter coupon code">
-                                    <button type="button">Apply</button>
+                                    <input type="text" name="coupon" placeholder="Cupón de Descuento">
+                                    <button type="button">Aplicar</button>
                                  </div>
                               </div>
                               <div class="col-lg-4">
                                  <div class="form-element">
                                     <select name="payement">
-                                       <option value="" selected disabled>Select a payment gateway</option>
-                                       <option value="paypal"> Paypal</option>
+                                       <option value="" selected disabled>Selecciona Metodo de Pago</option>
+                                       <option value="paypal"> Mercado pago</option>
                                        <option value="credit"> Credit Card</option>
-                                       <option value="cash">Cash on Delivery</option>
+                                       <option value="cash">Transferencia Bancaria -10% Off</option>
                                     </select>
                                  </div>
                               </div>
