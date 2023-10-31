@@ -19,186 +19,349 @@
     
 {% endblock %}
 
-
-
-        {% block content %}
+   
+{% block content %}
+   <body>
+     
+      
               <!--  Cart Table Start  --> 
-      <div class="cart-table">
-        <div class="container">
-           <div class="row">
-              <div class="col-lg-12">
-               {% if request.session.carrito.items %}
-                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                       <thead>
-                          <tr>
-                             <th scope="col">Borrar</th>
-                             <th scope="col">Imagen</th>
-                             <th scope="col">Titulo</th>
-                             <th scope="col">Precio</th>
-                             <th scope="col">Cantidad</th>
-                             <th scope="col">Total</th>
-                          </tr>
-                       </thead>
-                       <tbody>
-
-                        
-                        {% for key, value in request.session.carrito.items %}
-                          <tr>
-                             <td class="action">
-                             
-                                <a href="{% url 'CLSK' key %}"><i class="far fa-trash-alt"></i></a>
-                             </td>
-                             <td>
-                              <a href="{% url 'PD' key %}">
-                                 <img src="https://imgec.s3.sa-east-1.amazonaws.com/{{ value.imagen }}" width="200" class="table-img">
-                             </a>
-                             
-                              
-                             </td>
-                             <td class="title"><a class="title" href="{% url 'PD' key %}">{{ value.nombre }}</a></td>
-                             <td class="price">
-                              <del>${{ value.precioanterior }}</del>
-
-                                <span>$ {{ value.precio }}</span>
-                             </td>
-                             <td>
-                                <input class="quantity" type="number" name="quantity" value={{ value.cantidad }} min="1">
-                             </td>
-                             <td class="total"><span>$ {{ value.acumulado }}</span></td>
-                          </tr>
-                     {% endfor %}
-                     <td colspan="6">
-                        <div class="cartbtn-container">
-                           <a class="cartbtn shop" href="{% url 'gallery' %}">Galeria</a>
-                           
-                           <button class="cartbtn cart" type="submit">Actualizar Carrito</button>
-                           <a class="cartbtn cart" href="{% url 'CHK' %}">Ir a Pagar</a>
-  {% else %}
-                         
-
-          <div class="alert alert-danger text-center"> Sin Productos </div>
-          <a class="cartbtn shop" href="{% url 'gallery' %}" style="text-align: left;">Galeria</a>
-
-
-  {% endif %}
-                                </div>
-                             </td>
-                          </tr>
-                       </tbody>
-                    </table>
-                 </div>
+              <div class="cart-table">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-12">
+                      {% if request.session.carrito.items %}
+                        <div class="table-responsive">
+                           <table class="table table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">Borrar</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+       
+                               
+                               {% for key, value in request.session.carrito.items %}
+                                 <tr>
+                                    <td class="action">
+                                    
+                                       <a href="{% url 'CLSK' key %}"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                    <td>
+                                     <a href="{% url 'PD' key %}">
+                                        <img src="https://imgec.s3.sa-east-1.amazonaws.com/{{ value.imagen }}" width="200" class="table-img">
+                                    </a>
+                                    
+                                     
+                                    </td>
+                                    <td class="title"><a class="title" href="{% url 'PD' key %}">{{ value.nombre }}</a></td>
+                                    <td class="price">
+                                     <del>${{ value.precioanterior }}</del>
+       
+                                       <span>$ {{ value.precio }}</span>
+                                    </td>
+                                    <td>
+                                       <input class="quantity" type="number" name="quantity" value={{ value.cantidad }} min="1" disabled>
+                                    </td>
+                                    <td class="total"><span>$ {{ value.acumulado }}</span></td>
+                                 </tr>
+                            {% endfor %}
+                            <td colspan="6">
+                               <div class="cartbtn-container">
+                                  <a class="cartbtn shop" href="{% url 'gallery' %}">Galeria</a>
+                                  
+                                  <a class="cartbtn cart" href="{% url 'cart' %}">Ir a Pagar</a>
+         {% else %}
+                                
+       
+                 <div class="alert alert-danger text-center"> Sin Productos </div>
+                 <a class="cartbtn shop" href="{% url 'gallery' %}" style="text-align: left;">Galeria</a>
+       
+       
+         {% endif %}
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                      
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--  Cart Table Area End  --> 
+      
+      
+      <form action="#" class="billingForm">
+         <!--     Billing Address Start      -->
+         <div class="billing-address">
+            <div class="container">
+               <h4 class="title">Dirección de Envio</h4>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Nombre :</label>
+                        <input type="text" placeholder="Nombre">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Apellido :</label>
+                        <input type="text" placeholder="Apellido">
+                     </div>
+                  </div>
+               </div>
+               <div class="row align-items-end">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Dirección :</label>
+                        <input type="text" placeholder="Dirección">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                     <label for="">Intersección</label>
+                        <input type="text" placeholder="Intersección">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">Ciudad :</label>
+                        <input type="text" placeholder="Ciudad">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">Provincia :</label>
+                        <input type="text" placeholder="Provincia">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">Codigo Postal :</label>
+                        <input type="text" placeholder="Codigo Postal">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">País :</label>
+                        <input type="text" placeholder="País">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Nº de teléfono :</label>
+                        <input type="text" placeholder="Nº de teléfono">
+                     </div>
+                  </div>
+               </div>
                
-              </div>
-           </div>
-        </div>
-     </div>
-     <!--  Cart Table Area End  --> 
-     
-     
-     <!--  Cart Cards Area End  -->    
-     <div class="cart-cards">
-        <div class="container">
-           <div class="row">
-              <div class="col-lg-6 mb-5 mb-lg-0">
-                 <div class="card">
-                    <div class="card-header">
-                       <h5>Coupon</h5>
-                    </div>
-                    <div class="card-body">
-                       <form class="coupon-form" action="#">
-                          <p>Please apply a coupon to get a attractive discount</p>
-                          <div class="coupon-input">
-                             <input type="text" name="coupon" placeholder="Enter coupon code">
-                             <button type="submit">Apply</button>
-                          </div>
-                       </form>
-                    </div>
-                 </div>
-              </div>
-              <div class="col-lg-6">
-                 <div class="card">
-                    <div class="card-header">
-                       <h5>Total Carrito</h5>
-                    </div>
-                    <div class="card-body">
-                       <div class="row">
-                          <div class="col-lg-6">
-                             <div class="form-element">
-                                <label>Envio</label>
-                                <select name="shipping">
-                                   <option value="London" selected>In London</option>
-                                   <option value="around">Around London</option>
-                                   <option value="world">Around The World</option>
-                                </select>
-                             </div>
-                          </div>
-                          <div class="col-lg-6">
-                             <div class="form-element">
-                                <label>Tipo de Pago:</label>
-                                <select name="shipping">
-                                   <option value="cash" selected>Cash on Delivery</option>
-                                   <option value="advance">Advance Payment</option>
-                                </select>
-                             </div>
-                          </div>
-                       </div>
-                       <div class="calculations">
-                          <div class="single-calc">
-                             <strong>Total Carrito</strong>
-                             <span>$ {{ total_aum }}</span>
-                          </div>
-                          <div class="single-calc">
-                             <strong>Descuento 20% Off</strong>
-                             <span>- $ {{ desc }}</span>
-                          </div>
-                          <div class="single-calc">
-                             <strong>Subtotal</strong>
-                             <span>$ {{ total_carrito }}</span>
-                          </div>
-                          <div class="single-calc">
-                             <strong>Envio</strong>
-                             <span>$ 10.00</span>
-                          </div>
-                          <div class="single-calc total">
-                             <strong>Total</strong>
-                             <span>$ 1910.00</span>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <!--  Cart Cards Area End  --> 
-     
-     {% include "footer.html" %}
-
-        
-      <script src="{% static 'js/popper.min.js' %}"></script>
-      <!-- bootstrap js -->
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
-      <!-- owl carousel js -->
-      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-      <!-- isotope js -->
-      <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
-      <!-- isotope js -->
+            </div>
+         </div>
+         <!--     Billing Address End      -->
+         
+         
+         <!--     Shipping Address Start      -->   
+         <div style="display: True;" id="shippingAddress" class="shipping-address">
+            <div class="container">
+               <h4 class="title">Shipping Address</h4>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">First Name :</label>
+                        <input type="text" placeholder="First Name">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Last Name :</label>
+                        <input type="text" placeholder="Last Name">
+                     </div>
+                  </div>
+               </div>
+               <div class="row align-items-end">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Address :</label>
+                        <input type="text" placeholder="Address Line 1">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <input type="text" placeholder="Address Line 2">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">City :</label>
+                        <input type="text" placeholder="City">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">State :</label>
+                        <input type="text" placeholder="State">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">Zip Code :</label>
+                        <input type="text" placeholder="Zip Code">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Country :</label>
+                        <select name="country">
+                           <option value="" selected disabled>Select a Country</option>
+                           <option value="">United States</option>
+                           <option value="">United Kingdom</option>
+                           <option value="">Russia</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Phone Number :</label>
+                        <input type="text" placeholder="Phone Number">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--     Shipping Address End      -->                 
+      </form>
       
-
-      <script src="{% static 'js/pricing-range.js' %}"></script>
-      <!-- easyzoom js -->
       
-      <script src="{% static 'js/easyzoom.js' %}"></script>
+      <!--  Cart Cards Area End  -->    
+      <div class="cart-cards checkout">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="card">
+                     <div class="card-header">
+                        <h5>Cart Totals</h5>
+                     </div>
+                     <div class="card-body">
+                        <div class="calculations">
+                           <div class="single-calc">
+                              <strong>Total Carrito</strong>
+                              <span>$ {{ total_aum }}</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Descuento 20% Off</strong>
+                              <span>- $ {{ desc }}</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Subtotal</strong>
+                              <span>$ {{ subtotal }}</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Envio</strong>
+                              <span>$ 10.00</span>
+                           </div>
+                           <div class="single-calc total">
+                              <strong>Total</strong>
+                              <span>$ 1910.00</span>
+                           </div>
+                        </div>
+                        <form class="coupon-form mt-4" action="#">
+                           <div class="row">
+                              <div class="col-lg-4">
+                                 <div class="coupon-input">
+                                    <input type="text" name="coupon" placeholder="Enter coupon code">
+                                    <button type="button">Apply</button>
+                                 </div>
+                              </div>
+                              <div class="col-lg-4">
+                                 <div class="form-element">
+                                    <select name="payement">
+                                       <option value="" selected disabled>Select a payment gateway</option>
+                                       <option value="paypal"> Paypal</option>
+                                       <option value="credit"> Credit Card</option>
+                                       <option value="cash">Cash on Delivery</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <div class="col-lg-4">
+                                 
+                                    <div id="wallet_container"></div>
+                              
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  Cart Cards Area End  -->  
+      
+      
+      
+      <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+     
     
-     
-      <!-- slicknav js -->
-      <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
-      <!-- jquery ui js -->
-      <script src="{% static 'js/jquery-ui.min.js' %}"></script>
-      <!-- wow js -->
+      <script>
+        const mp = new MercadoPago('APP_USR-f98a79c9-89ef-4891-9215-ff35a331df51');
+        const bricksBuilder = mp.bricks();
       
-      <script src="{% static 'js/wow.min.js' %}"></script>
+        mp.bricks().create("wallet", "wallet_container", {
+          initialization: {
+            preferenceId: "{{ preference_id }}",
+          },
+        });
+      </script>
+      
+      {% include "footer.html" %}
+      
+      
+   
+
+
+      <!-- back to top area start -->
+      <div class="back-to-top">
+         <i class="fas fa-chevron-up"></i>
+      </div>
+      <!-- back to top area end -->
+      
+       
+         
+      <!-- popper js -->
+      <script src="assets/js/popper.min.js"></script>
+      <!-- bootstrap js -->
+      <script src="assets/js/bootstrap.min.js"></script>
+      <!-- owl carousel js -->
+      <script src="assets/js/owl.carousel.min.js"></script>
+      <!-- isotope js -->
+      <script src="assets/js/isotope.pkgd.min.js"></script>
+      <!-- isotope js -->
+      <script src="assets/js/pricing-range.js"></script>
+      <!-- easyzoom js -->
+      <script src="assets/js/easyzoom.js"></script>
+      <!-- slicknav js -->
+      <script src="assets/js/jquery.slicknav.min.js"></script>
+      <!-- jquery ui js -->
+      <script src="assets/js/jquery-ui.min.js"></script>
+      <!-- wow js -->
+      <script src="assets/js/wow.min.js"></script>
       <!-- main js -->
-      <script src="{% static 'js/main.js' %}"></script>
-        {% endblock %}
+      <script src="assets/js/main.js"></script>
+   </body>
+   {% endblock %}
+</html>

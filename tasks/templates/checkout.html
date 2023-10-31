@@ -24,162 +24,154 @@
    <body>
      
       
-      <!--  Cart Table Start  --> 
-      <div class="cart-table checkout">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-12">
-                  <div class="table-responsive">
-                     <table class="table table-bordered">
-                        <thead>
-                           <tr>
-                              <th scope="col">Image</th>
-                              <th scope="col">Title</th>
-                              <th scope="col">Price</th>
-                              <th scope="col">Quantity</th>
-                              <th scope="col">Total</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>
-                                 <img src="assets/img/product_1.jpg" alt="" class="table-img">
-                              </td>
-                              <td class="title"><a class="title" href="product-details.html">Q5 Card Cell Phone 5.5mm Ultra Thin Pocket</a></td>
-                              <td class="price">
-                                 <del>$ 500</del>
-                                 <span>$ 380</span>
-                              </td>
-                              <td>
-                                 <input class="quantity" type="text" name="quantity" value="2" min="1" disabled>
-                              </td>
-                              <td class="total"><span>$ 760</span></td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <img src="assets/img/product_7.jpg" alt="" class="table-img">
-                              </td>
-                              <td class="title"><a class="title" href="product-details.html">Q5 Card Cell Phone 5.5mm Ultra Thin Pocket</a></td>
-                              <td class="price">
-                                 <del>$ 400</del>
-                                 <span>$ 220</span>
-                              </td>
-                              <td>
-                                 <input class="quantity" type="text" name="quantity" value="3" min="1" disabled>
-                              </td>
-                              <td class="total"><span>$ 660</span></td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <img src="assets/img/product_8.jpg" alt="" class="table-img">
-                              </td>
-                              <td class="title"><a class="title" href="product-details.html">Q5 Card Cell Phone 5.5mm Ultra Thin Pocket</a></td>
-                              <td class="price">
-                                 <span class="ml-0">$ 650</span>
-                              </td>
-                              <td>
-                                 <input class="quantity" type="text" name="quantity" value="1" min="1" disabled>
-                              </td>
-                              <td class="total"><span>$ 650</span></td>
-                           </tr>
-                        </tbody>
-                     </table>
+              <!--  Cart Table Start  --> 
+              <div class="cart-table">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-12">
+                      {% if request.session.carrito.items %}
+                        <div class="table-responsive">
+                           <table class="table table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">Borrar</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+       
+                               
+                               {% for key, value in request.session.carrito.items %}
+                                 <tr>
+                                    <td class="action">
+                                    
+                                       <a href="{% url 'CLSK' key %}"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                    <td>
+                                     <a href="{% url 'PD' key %}">
+                                        <img src="https://imgec.s3.sa-east-1.amazonaws.com/{{ value.imagen }}" width="200" class="table-img">
+                                    </a>
+                                    
+                                     
+                                    </td>
+                                    <td class="title"><a class="title" href="{% url 'PD' key %}">{{ value.nombre }}</a></td>
+                                    <td class="price">
+                                     <del>${{ value.precioanterior }}</del>
+       
+                                       <span>$ {{ value.precio }}</span>
+                                    </td>
+                                    <td>
+                                       <input class="quantity" type="number" name="quantity" value={{ value.cantidad }} min="1" disabled>
+                                    </td>
+                                    <td class="total"><span>$ {{ value.acumulado }}</span></td>
+                                 </tr>
+                            {% endfor %}
+                            <td colspan="6">
+                               <div class="cartbtn-container">
+                                  <a class="cartbtn shop" href="{% url 'gallery' %}">Galeria</a>
+                                  
+                                  <a class="cartbtn cart" href="{% url 'cart' %}">Ir a Pagar</a>
+         {% else %}
+                                
+       
+                 <div class="alert alert-danger text-center"> Sin Productos </div>
+                 <a class="cartbtn shop" href="{% url 'gallery' %}" style="text-align: left;">Galeria</a>
+       
+       
+         {% endif %}
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                      
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </div>
-      <!--  Cart Table Area End  --> 
+            <!--  Cart Table Area End  --> 
       
       
       <form action="#" class="billingForm">
          <!--     Billing Address Start      -->
          <div class="billing-address">
             <div class="container">
-               <h4 class="title">Billing Address</h4>
+               <h4 class="title">Dirección de Envio</h4>
                <div class="row">
                   <div class="col-lg-6">
                      <div class="form-element">
-                        <label for="">First Name :</label>
-                        <input type="text" placeholder="First Name">
+                        <label for="">Nombre :</label>
+                        <input type="text" placeholder="Nombre">
                      </div>
                   </div>
                   <div class="col-lg-6">
                      <div class="form-element">
-                        <label for="">Last Name :</label>
-                        <input type="text" placeholder="Last Name">
+                        <label for="">Apellido :</label>
+                        <input type="text" placeholder="Apellido">
                      </div>
                   </div>
                </div>
                <div class="row align-items-end">
                   <div class="col-lg-6">
                      <div class="form-element">
-                        <label for="">Address :</label>
-                        <input type="text" placeholder="Address Line 1">
+                        <label for="">Dirección :</label>
+                        <input type="text" placeholder="Dirección">
                      </div>
                   </div>
                   <div class="col-lg-6">
                      <div class="form-element">
-                        <input type="text" placeholder="Address Line 2">
+                     <label for="">Intersección</label>
+                        <input type="text" placeholder="Intersección">
                      </div>
                   </div>
                </div>
                <div class="row">
                   <div class="col-lg-4">
                      <div class="form-element">
-                        <label for="">City :</label>
-                        <input type="text" placeholder="City">
+                        <label for="">Ciudad :</label>
+                        <input type="text" placeholder="Ciudad">
                      </div>
                   </div>
                   <div class="col-lg-4">
                      <div class="form-element">
-                        <label for="">State :</label>
-                        <input type="text" placeholder="State">
+                        <label for="">Provincia :</label>
+                        <input type="text" placeholder="Provincia">
                      </div>
                   </div>
                   <div class="col-lg-4">
                      <div class="form-element">
-                        <label for="">Zip Code :</label>
-                        <input type="text" placeholder="Zip Code">
+                        <label for="">Codigo Postal :</label>
+                        <input type="text" placeholder="Codigo Postal">
                      </div>
                   </div>
                </div>
                <div class="row">
                   <div class="col-lg-6">
                      <div class="form-element">
-                        <label for="">Country :</label>
-                        <select name="country">
-                           <option value="" selected disabled>Select a Country</option>
-                           <option value="">United States</option>
-                           <option value="">United Kingdom</option>
-                           <option value="">Russia</option>
-                        </select>
+                        <label for="">País :</label>
+                        <input type="text" placeholder="País">
                      </div>
                   </div>
                   <div class="col-lg-6">
                      <div class="form-element">
-                        <label for="">Phone Number :</label>
-                        <input type="text" placeholder="Phone Number">
+                        <label for="">Nº de teléfono :</label>
+                        <input type="text" placeholder="Nº de teléfono">
                      </div>
                   </div>
                </div>
-               <div class="row">
-                  <div class="col-lg-12">
-                     <div class="filter">
-                        <label class="container">Shipping Address (Same as Billing Address)
-                        <input id="sameStatus" type="checkbox" name="status" value="1" checked>
-                        <span class="checkmark"></span>
-                        </label>
-                     </div>
-                  </div>
-               </div>
+               
             </div>
          </div>
          <!--     Billing Address End      -->
          
          
          <!--     Shipping Address Start      -->   
-         <div style="display: none;" id="shippingAddress" class="shipping-address">
+         <div style="display: True;" id="shippingAddress" class="shipping-address">
             <div class="container">
                <h4 class="title">Shipping Address</h4>
                <div class="row">
@@ -266,24 +258,20 @@
                      <div class="card-body">
                         <div class="calculations">
                            <div class="single-calc">
-                              <strong>Cart Amount</strong>
-                              <span>$ 2070.00</span>
+                              <strong>Total Carrito</strong>
+                              <span>$ {{ total_aum }}</span>
                            </div>
                            <div class="single-calc">
-                              <strong>Discount</strong>
-                              <span>- $ 270.00</span>
+                              <strong>Descuento 20% Off</strong>
+                              <span>- $ {{ desc }}</span>
                            </div>
                            <div class="single-calc">
                               <strong>Subtotal</strong>
-                              <span>$ 1800.00</span>
+                              <span>$ {{ subtotal }}</span>
                            </div>
                            <div class="single-calc">
-                              <strong>Shipping Charge</strong>
+                              <strong>Envio</strong>
                               <span>$ 10.00</span>
-                           </div>
-                           <div class="single-calc">
-                              <strong>Tax</strong>
-                              <span>$ 100.00</span>
                            </div>
                            <div class="single-calc total">
                               <strong>Total</strong>
@@ -292,7 +280,7 @@
                         </div>
                         <form class="coupon-form mt-4" action="#">
                            <div class="row">
-                              <div class="col-lg-5">
+                              <div class="col-lg-4">
                                  <div class="coupon-input">
                                     <input type="text" name="coupon" placeholder="Enter coupon code">
                                     <button type="button">Apply</button>
@@ -308,10 +296,10 @@
                                     </select>
                                  </div>
                               </div>
-                              <div class="col-lg-3">
-                                 <div class="form-element mb-0">
-                                    <button type="submit"><span>Place Order</span></button>
-                                 </div>
+                              <div class="col-lg-4">
+                                 
+                                    <div id="wallet_container"></div>
+                              
                               </div>
                            </div>
                         </form>
@@ -325,6 +313,20 @@
       
       
       
+      <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+     
+    
+      <script>
+        const mp = new MercadoPago('APP_USR-f98a79c9-89ef-4891-9215-ff35a331df51');
+        const bricksBuilder = mp.bricks();
+      
+        mp.bricks().create("wallet", "wallet_container", {
+          initialization: {
+            preferenceId: "{{ preference_id }}",
+          },
+        });
+      </script>
       
       {% include "footer.html" %}
       
