@@ -140,6 +140,16 @@ button.boxed-btn {
     transition: .5s;
 }
 
+
+.right {
+    margin-left: auto; /* Empujará el enlace hacia la derecha */
+}
+
+.left {
+    margin-right: auto; /* Empujará el enlace hacia la izquierda */
+}
+
+
 a.boxed-btn:hover,
 button.boxed-btn:hover {
     color: #231430;
@@ -476,6 +486,7 @@ h2.subtitle::after {
 .inner {
     display: table-cell;
     vertical-align: middle;
+    text-align: center;
 }
 
 .clearfix::after {
@@ -3963,6 +3974,7 @@ ul.overview-points li::before {
 
 .single-pic img {
     width: 100%;
+    border: 5px solid #231430;
     border-radius: 8px;
 }
 
