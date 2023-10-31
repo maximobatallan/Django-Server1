@@ -71,8 +71,9 @@
                      <td colspan="6">
                         <div class="cartbtn-container">
                            <a class="cartbtn shop" href="{% url 'gallery' %}">Galeria</a>
-                           <a class="cartbtn cart" href="checkout.html">Ir a Pagar</a>
+                           
                            <button class="cartbtn cart" type="submit">Actualizar Carrito</button>
+                           <a class="cartbtn cart" href="{% url 'CHK' %}">Ir a Pagar</a>
   {% else %}
                          
 

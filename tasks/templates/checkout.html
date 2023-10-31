@@ -1,0 +1,365 @@
+{% extends "base.html" %}
+{% load static%}
+{% block head %}
+    {{ block.super }}
+    
+    <!-- easyzoom css -->
+    <link rel="stylesheet" href="{% static 'css/easyzoom.css' %}">
+      <!-- slicknav css -->
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <!-- jquery ui css -->
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <!-- animate css -->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  
+    
+{% endblock %}
+
+   
+{% block content %}
+   <body>
+     
+      
+      <!--  Cart Table Start  --> 
+      <div class="cart-table checkout">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="table-responsive">
+                     <table class="table table-bordered">
+                        <thead>
+                           <tr>
+                              <th scope="col">Image</th>
+                              <th scope="col">Title</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Total</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <img src="assets/img/product_1.jpg" alt="" class="table-img">
+                              </td>
+                              <td class="title"><a class="title" href="product-details.html">Q5 Card Cell Phone 5.5mm Ultra Thin Pocket</a></td>
+                              <td class="price">
+                                 <del>$ 500</del>
+                                 <span>$ 380</span>
+                              </td>
+                              <td>
+                                 <input class="quantity" type="text" name="quantity" value="2" min="1" disabled>
+                              </td>
+                              <td class="total"><span>$ 760</span></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <img src="assets/img/product_7.jpg" alt="" class="table-img">
+                              </td>
+                              <td class="title"><a class="title" href="product-details.html">Q5 Card Cell Phone 5.5mm Ultra Thin Pocket</a></td>
+                              <td class="price">
+                                 <del>$ 400</del>
+                                 <span>$ 220</span>
+                              </td>
+                              <td>
+                                 <input class="quantity" type="text" name="quantity" value="3" min="1" disabled>
+                              </td>
+                              <td class="total"><span>$ 660</span></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <img src="assets/img/product_8.jpg" alt="" class="table-img">
+                              </td>
+                              <td class="title"><a class="title" href="product-details.html">Q5 Card Cell Phone 5.5mm Ultra Thin Pocket</a></td>
+                              <td class="price">
+                                 <span class="ml-0">$ 650</span>
+                              </td>
+                              <td>
+                                 <input class="quantity" type="text" name="quantity" value="1" min="1" disabled>
+                              </td>
+                              <td class="total"><span>$ 650</span></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  Cart Table Area End  --> 
+      
+      
+      <form action="#" class="billingForm">
+         <!--     Billing Address Start      -->
+         <div class="billing-address">
+            <div class="container">
+               <h4 class="title">Billing Address</h4>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">First Name :</label>
+                        <input type="text" placeholder="First Name">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Last Name :</label>
+                        <input type="text" placeholder="Last Name">
+                     </div>
+                  </div>
+               </div>
+               <div class="row align-items-end">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Address :</label>
+                        <input type="text" placeholder="Address Line 1">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <input type="text" placeholder="Address Line 2">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">City :</label>
+                        <input type="text" placeholder="City">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">State :</label>
+                        <input type="text" placeholder="State">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">Zip Code :</label>
+                        <input type="text" placeholder="Zip Code">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Country :</label>
+                        <select name="country">
+                           <option value="" selected disabled>Select a Country</option>
+                           <option value="">United States</option>
+                           <option value="">United Kingdom</option>
+                           <option value="">Russia</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Phone Number :</label>
+                        <input type="text" placeholder="Phone Number">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="filter">
+                        <label class="container">Shipping Address (Same as Billing Address)
+                        <input id="sameStatus" type="checkbox" name="status" value="1" checked>
+                        <span class="checkmark"></span>
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--     Billing Address End      -->
+         
+         
+         <!--     Shipping Address Start      -->   
+         <div style="display: none;" id="shippingAddress" class="shipping-address">
+            <div class="container">
+               <h4 class="title">Shipping Address</h4>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">First Name :</label>
+                        <input type="text" placeholder="First Name">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Last Name :</label>
+                        <input type="text" placeholder="Last Name">
+                     </div>
+                  </div>
+               </div>
+               <div class="row align-items-end">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Address :</label>
+                        <input type="text" placeholder="Address Line 1">
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <input type="text" placeholder="Address Line 2">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">City :</label>
+                        <input type="text" placeholder="City">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">State :</label>
+                        <input type="text" placeholder="State">
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="form-element">
+                        <label for="">Zip Code :</label>
+                        <input type="text" placeholder="Zip Code">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Country :</label>
+                        <select name="country">
+                           <option value="" selected disabled>Select a Country</option>
+                           <option value="">United States</option>
+                           <option value="">United Kingdom</option>
+                           <option value="">Russia</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="form-element">
+                        <label for="">Phone Number :</label>
+                        <input type="text" placeholder="Phone Number">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--     Shipping Address End      -->                 
+      </form>
+      
+      
+      <!--  Cart Cards Area End  -->    
+      <div class="cart-cards checkout">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="card">
+                     <div class="card-header">
+                        <h5>Cart Totals</h5>
+                     </div>
+                     <div class="card-body">
+                        <div class="calculations">
+                           <div class="single-calc">
+                              <strong>Cart Amount</strong>
+                              <span>$ 2070.00</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Discount</strong>
+                              <span>- $ 270.00</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Subtotal</strong>
+                              <span>$ 1800.00</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Shipping Charge</strong>
+                              <span>$ 10.00</span>
+                           </div>
+                           <div class="single-calc">
+                              <strong>Tax</strong>
+                              <span>$ 100.00</span>
+                           </div>
+                           <div class="single-calc total">
+                              <strong>Total</strong>
+                              <span>$ 1910.00</span>
+                           </div>
+                        </div>
+                        <form class="coupon-form mt-4" action="#">
+                           <div class="row">
+                              <div class="col-lg-5">
+                                 <div class="coupon-input">
+                                    <input type="text" name="coupon" placeholder="Enter coupon code">
+                                    <button type="button">Apply</button>
+                                 </div>
+                              </div>
+                              <div class="col-lg-4">
+                                 <div class="form-element">
+                                    <select name="payement">
+                                       <option value="" selected disabled>Select a payment gateway</option>
+                                       <option value="paypal"> Paypal</option>
+                                       <option value="credit"> Credit Card</option>
+                                       <option value="cash">Cash on Delivery</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <div class="col-lg-3">
+                                 <div class="form-element mb-0">
+                                    <button type="submit"><span>Place Order</span></button>
+                                 </div>
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  Cart Cards Area End  -->  
+      
+      
+      
+      
+      {% include "footer.html" %}
+      
+      
+   
+
+
+      <!-- back to top area start -->
+      <div class="back-to-top">
+         <i class="fas fa-chevron-up"></i>
+      </div>
+      <!-- back to top area end -->
+      
+       
+         
+      <!-- popper js -->
+      <script src="assets/js/popper.min.js"></script>
+      <!-- bootstrap js -->
+      <script src="assets/js/bootstrap.min.js"></script>
+      <!-- owl carousel js -->
+      <script src="assets/js/owl.carousel.min.js"></script>
+      <!-- isotope js -->
+      <script src="assets/js/isotope.pkgd.min.js"></script>
+      <!-- isotope js -->
+      <script src="assets/js/pricing-range.js"></script>
+      <!-- easyzoom js -->
+      <script src="assets/js/easyzoom.js"></script>
+      <!-- slicknav js -->
+      <script src="assets/js/jquery.slicknav.min.js"></script>
+      <!-- jquery ui js -->
+      <script src="assets/js/jquery-ui.min.js"></script>
+      <!-- wow js -->
+      <script src="assets/js/wow.min.js"></script>
+      <!-- main js -->
+      <script src="assets/js/main.js"></script>
+   </body>
+   {% endblock %}
+</html>
