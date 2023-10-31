@@ -126,7 +126,6 @@ def tienda(request):
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
-    
     carrito.agregar(producto)
     
     #return render(request, "productdetails.html", {'productos': producto})
@@ -187,5 +186,24 @@ def cart(request):
     
    
     return render(request, "cart.html", {'precioanterior': precioanterior, 'desc': desc,'desc': desc, 'total_aum': total_aum} )
+
+def checkout(request):
+    precioanterior = 0
+    total = 0
+    cantidad = 0
+    desc = 0
+    total_aum = 0
+    for key, value in request.session["carrito"].items():
+        print(value)
+        precioanterior += int(value["precioanterior"])
+        total += int(value["acumulado"])
+        cantidad += int(value["cantidad"])
+        desc += (precioanterior * cantidad  - total)
+        total_aum += (precioanterior * cantidad )
+    
+    
+   
+    return render(request, "checkout.html", {'precioanterior': precioanterior, 'desc': desc,'desc': desc, 'total_aum': total_aum} )
+
 
     

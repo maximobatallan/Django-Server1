@@ -22,7 +22,7 @@ class Carrito:
                 "precio": producto.precio,
                 "precioanterior": int(producto.precio *1.25),
             }
-            print('aca')
+       
         else:
             self.carrito[id]["cantidad"] += 1
             self.carrito[id]["acumulado"] += producto.precio
