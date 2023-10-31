@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .carrito import Carrito
+import mercadopago
 
 
 
@@ -124,12 +125,18 @@ def tienda(request):
     return render(request, "tienda.html", {'productos': productos})
 
 def agregar_producto(request, producto_id):
-    carrito = Carrito(request)
-    producto = Producto.objects.get(id=producto_id)
-    carrito.agregar(producto)
-    
-    #return render(request, "productdetails.html", {'productos': producto})
-    return redirect("PD", producto_id=producto_id)
+    if not request.session["carrito"]:
+        carrito = Carrito(request)
+        producto = Producto.objects.get(id=producto_id)
+        carrito.agregar(producto)
+       
+        return redirect("cart")
+    else:
+        carrito = Carrito(request)
+        producto = Producto.objects.get(id=producto_id)
+        carrito.agregar(producto)
+       
+        return redirect("PD", producto_id=producto_id)
 
 
 def eliminar_producto(request, producto_id):
@@ -169,41 +176,49 @@ def detalleproducto(request,producto_id):
     return render(request, "productdetails.html", {'productos': producto})
     
     
+
+
+
+
 def cart(request):
     precioanterior = 0
-    total = 0
     cantidad = 0
     desc = 0
+    subtotal = 0
     total_aum = 0
+    preference_data = { "items": [] }
     for key, value in request.session["carrito"].items():
-        print(value)
-        precioanterior += int(value["precioanterior"])
-        total += int(value["acumulado"])
-        cantidad += int(value["cantidad"])
-        desc += (precioanterior * cantidad  - total)
-        total_aum += (precioanterior * cantidad )
+       
+        precioanterior = int(value["precioanterior"])
+        cantidad = int(value["cantidad"])
+        desc += int(precioanterior * cantidad)
+        total_aum += int(precioanterior * cantidad)
+        subtotal += int(value["precio"]*value["cantidad"])
+        
+    
+        item = {
+                    "title": value["nombre"],
+                    "quantity": cantidad,
+                    "unit_price": int(value["precio"]),
+                }
+     
+ 
+        preference_data["items"].append(item)
+    desc= int(total_aum - subtotal)   
+    
+    sdk = mercadopago.SDK("APP_USR-5213772683732349-061323-dc5bd7f2a56c2080735653bb6d1901e7-97277305")
+    preference_data["back_urls"] = {
+    "success": "https://www.tu-sitio/success",
+    "failure": "https://www.tu-sitio/failure",
+    "pending": "https://www.tu-sitio/pendings"
+}
+    preference_data["auto_return"] = "approved"
     
     
-   
-    return render(request, "cart.html", {'precioanterior': precioanterior, 'desc': desc,'desc': desc, 'total_aum': total_aum} )
-
-def checkout(request):
-    precioanterior = 0
-    total = 0
-    cantidad = 0
-    desc = 0
-    total_aum = 0
-    for key, value in request.session["carrito"].items():
-        print(value)
-        precioanterior += int(value["precioanterior"])
-        total += int(value["acumulado"])
-        cantidad += int(value["cantidad"])
-        desc += (precioanterior * cantidad  - total)
-        total_aum += (precioanterior * cantidad )
+    preference_response = sdk.preference().create(preference_data)
+    preference = preference_response["response"]
     
-    
-   
-    return render(request, "checkout.html", {'precioanterior': precioanterior, 'desc': desc,'desc': desc, 'total_aum': total_aum} )
+    return render(request, "checkout.html", {'preference_id': preference['id'], 'precioanterior': precioanterior, 'desc': desc, 'subtotal': subtotal,'desc': desc, 'total_aum': total_aum} )
 
 
     
