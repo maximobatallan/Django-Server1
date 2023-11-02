@@ -40,6 +40,7 @@ urlpatterns = [
     path('gallery/', views.galeriaprueba, name='gallery'),
     path('productdetails/<int:producto_id>/', views.detalleproducto, name='PD'),
     path('cart/', views.cart, name='cart'),
+    path('cotizar/', views.cotizar, name='cotizar'),
     
     ]
 
