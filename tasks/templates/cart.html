@@ -95,156 +95,91 @@
                </div>
             </div>
             <!--  Cart Table Area End  --> 
-      
-      
-      <form action="#" class="billingForm">
-         <!--     Billing Address Start      -->
-         <div class="billing-address">
-            <div class="container">
-               <h4 class="title">Dirección de Envio</h4>
-               <div class="row">
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Nombre :</label>
-                        <input type="text" placeholder="Nombre">
+
+            <div class="cart-cards checkout">
+            <form action="{% url 'cotizar' %}" method="post" class="billingForm">   
+               {% csrf_token %}      
+               
+               <!--     Shipping Address Start      -->   
+               
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="card">
+                              <div class="card-header">
+                                 <h5>Dirección de Envió</h5>
+                              </div>
+                           </div><br>
+                        </div>
+                     <div class="card-body">
+                        <div class="col-lg-6">
+                           <div class="form-element">
+                              <label for="">Nombre :</label>
+                              <input type="text" name="nombre" required placeholder="Nombre">
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-element">
+                              <label for="">Apellido :</label>
+                              <input type="text" name="apellido" required placeholder="Last Name">
+                           </div>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Apellido :</label>
-                        <input type="text" placeholder="Apellido">
+                     <div class="row align-items-end">
+                        <div class="col-lg-6">
+                           <div class="form-element">
+                              <label for="">Dirección :</label>
+                              <input type="text"  name="direccion" required placeholder="Dirección">
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-element">
+                              <label for="">Nº :</label>
+                              <input type="text"  name="numero" required placeholder="Número">
+                           </div>
+                        </div>
                      </div>
-                  </div>
-               </div>
-               <div class="row align-items-end">
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Dirección :</label>
-                        <input type="text" placeholder="Dirección">
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <div class="form-element">
+                              <label for="">Ciudad :</label>
+                              <input type="text"  name="ciudad" required placeholder="Ciudad">
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="form-element">
+                              <label for="">Estado :</label>
+                              <input type="text"  name="estado" required placeholder="Estado">
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="form-element">
+                              <label for="">Código Postal :</label>
+                              <input type="text"  name="codigo_postal" required placeholder="Código Postal">
+                           </div>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                     <label for="">Intersección</label>
-                        <input type="text" placeholder="Intersección">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="form-element">
+                              <label for="">País :</label>
+                              <input type="text"  name="pais" required placeholder="Pais">
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-element">
+                              <label for="">Teléfono :</label>
+                              <input type="text"  name="telefono" required placeholder="Teléfono">
+                           </div>
+                           <button type="submit" class="cartbtn shop" style="text-align: right">Cotizar</button>
+                        </div>
                      </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-4">
-                     <div class="form-element">
-                        <label for="">Ciudad :</label>
-                        <input type="text" placeholder="Ciudad">
-                     </div>
-                  </div>
-                  <div class="col-lg-4">
-                     <div class="form-element">
-                        <label for="">Provincia :</label>
-                        <input type="text" placeholder="Provincia">
-                     </div>
-                  </div>
-                  <div class="col-lg-4">
-                     <div class="form-element">
-                        <label for="">Codigo Postal :</label>
-                        <input type="text" placeholder="Codigo Postal">
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">País :</label>
-                        <input type="text" placeholder="País">
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Nº de teléfono :</label>
-                        <input type="text" placeholder="Nº de teléfono">
                      </div>
                   </div>
                </div>
                
-            </div>
-         </div>
-         <!--     Billing Address End      -->
-         
-         
-         <!--     Shipping Address Start      -->   
-         <div style="display: True;" id="shippingAddress" class="shipping-address">
-            <div class="container">
-               <h4 class="title">Shipping Address</h4>
-               <div class="row">
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">First Name :</label>
-                        <input type="text" placeholder="First Name">
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Last Name :</label>
-                        <input type="text" placeholder="Last Name">
-                     </div>
-                  </div>
-               </div>
-               <div class="row align-items-end">
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Address :</label>
-                        <input type="text" placeholder="Address Line 1">
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <input type="text" placeholder="Address Line 2">
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-4">
-                     <div class="form-element">
-                        <label for="">City :</label>
-                        <input type="text" placeholder="City">
-                     </div>
-                  </div>
-                  <div class="col-lg-4">
-                     <div class="form-element">
-                        <label for="">State :</label>
-                        <input type="text" placeholder="State">
-                     </div>
-                  </div>
-                  <div class="col-lg-4">
-                     <div class="form-element">
-                        <label for="">Zip Code :</label>
-                        <input type="text" placeholder="Zip Code">
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Country :</label>
-                        <select name="country">
-                           <option value="" selected disabled>Select a Country</option>
-                           <option value="">United States</option>
-                           <option value="">United Kingdom</option>
-                           <option value="">Russia</option>
-                        </select>
-                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                     <div class="form-element">
-                        <label for="">Phone Number :</label>
-                        <input type="text" placeholder="Phone Number">
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!--     Shipping Address End      -->                 
-      </form>
-      
+               <!--     Shipping Address End      -->                 
+            </form>
       
       <!--  Cart Cards Area End  -->    
       <div class="cart-cards checkout">
@@ -334,34 +269,32 @@
    
 
 
-      <!-- back to top area start -->
-      <div class="back-to-top">
-         <i class="fas fa-chevron-up"></i>
-      </div>
-      <!-- back to top area end -->
-      
-       
+
          
       <!-- popper js -->
-      <script src="assets/js/popper.min.js"></script>
+      <script src="{% static 'js/popper.min.js' %}"></script>
       <!-- bootstrap js -->
-      <script src="assets/js/bootstrap.min.js"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
       <!-- owl carousel js -->
-      <script src="assets/js/owl.carousel.min.js"></script>
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
       <!-- isotope js -->
-      <script src="assets/js/isotope.pkgd.min.js"></script>
+      <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
       <!-- isotope js -->
-      <script src="assets/js/pricing-range.js"></script>
+
+
+      <script src="{% static 'js/pricing-range.js' %}"></script>
       <!-- easyzoom js -->
-      <script src="assets/js/easyzoom.js"></script>
+      <script src="{% static 'js/easyzoom.js' %}"></script>
       <!-- slicknav js -->
-      <script src="assets/js/jquery.slicknav.min.js"></script>
+      <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+      
+
       <!-- jquery ui js -->
-      <script src="assets/js/jquery-ui.min.js"></script>
+      <script src="{% static 'js/jquery-ui.min.js' %}"></script>
       <!-- wow js -->
-      <script src="assets/js/wow.min.js"></script>
+      <script src="{% static 'js/wow.min.js' %}"></script>
       <!-- main js -->
-      <script src="assets/js/main.js"></script>
+      <script src="{% static 'js/main.js' %}"></script>
    </body>
    {% endblock %}
 </html>
