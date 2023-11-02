@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .carrito import Carrito
 import mercadopago
+from django.http import JsonResponse
 
 
 
@@ -217,3 +218,39 @@ def cart(request):
     else: 
         
         return redirect("gallery")
+    
+    
+def cotizar(request):
+    if request.method == 'POST':
+        print(request)
+        # Obtener los datos del formulario
+        nombre = request.POST.get('nombre', '')
+        apellido = request.POST.get('apellido', '')
+        direccion = request.POST.get('direccion', '')
+        numero = request.POST.get('numero', '')
+        ciudad = request.POST.get('ciudad', '')
+        estado = request.POST.get('estado', '')
+        codigo_postal = request.POST.get('codigo_postal', '')
+        pais = request.POST.get('pais', '')
+        telefono = request.POST.get('telefono', '')
+
+        # Crear un diccionario con los datos recopilados
+        cotizacion_data = {
+            'Nombre': nombre,
+            'Apellido': apellido,
+            'Dirección': direccion,
+            'Número': numero,
+            'Ciudad': ciudad,
+            'Estado': estado,
+            'Código Postal': codigo_postal,
+            'País': pais,
+            'Teléfono': telefono,
+        }
+
+        # Imprimir los datos en la consola del servidor
+        print("Información de la cotización:")
+        print(cotizacion_data)
+
+        return JsonResponse({'message': 'Cotización exitosa'})  # Puedes retornar una respuesta JSON si lo deseas
+
+    return render(request, 'cart.html')  # Reemplaza 'tu_template.html' con la plantilla adecuada
