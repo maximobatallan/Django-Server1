@@ -123,7 +123,7 @@
                               <input type="text" name="apellido" required placeholder="Last Name">
                            </div>
                         </div>
-                     </div>
+                     </div><br>
                      <div class="row align-items-end">
                         <div class="col-lg-6">
                            <div class="form-element">
@@ -137,7 +137,7 @@
                               <input type="text"  name="numero" required placeholder="Número">
                            </div>
                         </div>
-                     </div>
+                     </div><br>
                      <div class="row">
                         <div class="col-lg-4">
                            <div class="form-element">
@@ -157,7 +157,7 @@
                               <input type="text"  name="codigo_postal" required placeholder="Código Postal">
                            </div>
                         </div>
-                     </div>
+                     </div><br>
                      <div class="row">
                         <div class="col-lg-6">
                            <div class="form-element">
@@ -171,9 +171,20 @@
                               <input type="text"  name="telefono" required placeholder="Teléfono">
                            </div>
                            
-                        </div>
-                        <button type="submit" class="cartbtn shop" style="text-align: right">Cotizar</button>
-                     </div>
+                        </div>     </div> 
+                       </div><br>
+                        <div class="col-lg-12">
+                           <div class="row">
+                               <div class="col-lg-8"></div> <!-- Agregar un margen de 2 columnas a la izquierda -->
+                               <div class="col-lg-0">
+                                   <div class="form-element"> <br>
+                                       <button type="submit" class="cartbtn shop" style="text-align: center">Cotizar envío</button>
+                                   </div>
+                               </div>
+                               <div class="col-lg-2"></div> <!-- Agregar un margen de 2 columnas a la derecha -->
+                           </div>
+                       </div>
+                 
                   </div>
                </div>
                
@@ -212,22 +223,16 @@
                               <span>$ {{ total_compra }}</span>
                            </div>
                         </div>
-                        <form class="coupon-form mt-4" action="#">
+                     <br>
                            <div class="row">
-                              <div class="col-lg-4">
+                              
+                              <div class="col-lg-8">
                                  <div class="coupon-input">
-                                    <input type="text" name="coupon" placeholder="Cupón de Descuento">
-                                    <button type="button">Aplicar</button>
-                                 </div>
-                              </div>
-                              <div class="col-lg-4">
-                                 <div class="form-element">
-                                    <select name="payement">
-                                       <option value="" selected disabled>Selecciona Metodo de Pago</option>
-                                       <option value="paypal"> Mercado pago</option>
-                                       <option value="credit"> Credit Card</option>
-                                       <option value="cash">Transferencia Bancaria -10% Off</option>
-                                    </select>
+                                    
+                                 
+                                    <a class="cartbtn shop" href="{% url 'datosbanco' %}" style="display: block; text-align: center;">Transferencia Bancaria <br>10% Off</a>
+
+                                 
                                  </div>
                               </div>
                               <div class="col-lg-4">
@@ -236,7 +241,7 @@
                               
                               </div>
                            </div>
-                        </form>
+                    
                      </div>
                   </div>
                </div>
