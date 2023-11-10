@@ -88,6 +88,43 @@
 ---------------------------
 */
 
+@media (max-width: 768px) {
+   
+    #whatsapp-btn {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        width: 9%;
+        
+        background-color: green;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 2em;
+        color: #fff;
+        z-index: 1;
+        opacity: 0.8;
+        animation: whatsapp-btn 1s ease-in-out infinite alternate;
+    }}
+  
+  @media (min-width: 769px) {
+   
+    #whatsapp-btn {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        width: 3%;
+        
+        background-color: green;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 2em;
+        color: #fff;
+        z-index: 2;
+        opacity: 0.8;
+        animation: whatsapp-btn 1s ease-in-out infinite alternate;
+    }}
+
+
 
 /*-----------------
     @Typography
@@ -244,7 +281,7 @@ span.title {
 }
 
 h2.subtitle {
-    color: #183650;
+    color: #231430;
     font-size: 36px;
     font-weight: 700;
     position: relative;
@@ -280,7 +317,8 @@ h2.subtitle::after {
     width: 100%;
     height: 50px;
     line-height: 50px;
-    border: none;
+    border: 1px solid #231430;
+    border-radius: 3px;
     outline: 0;
     padding-left: 20px;
     color: #4e5861;
@@ -327,7 +365,7 @@ h2.subtitle::after {
     left: 0px;
     height: 100%;
     width: 0%;
-    background-color: #fff;
+    background-color: #231430;
 }
 
 .form-element button[type="submit"]::after,
@@ -338,7 +376,7 @@ h2.subtitle::after {
     right: 0px;
     height: 100%;
     width: 0%;
-    background-color: #fff;
+    
     -webkit-transition: width .5s;
     -o-transition: width .5s;
     transition: width .5s;
@@ -355,6 +393,7 @@ h2.subtitle::after {
 .form-element button[type="submit"]:hover::after,
 .form-element input[type="submit"]:hover::after {
     -webkit-transition-property: none;
+    background-color: #231430;
     -o-transition-property: none;
     transition-property: none;
     visibility: hidden;
@@ -1131,7 +1170,6 @@ ul.search-cart-area {
 }
 
 .search-cart-area li:first-child::after {
-    content: "|";
     top: -1px;
     position: absolute;
     right: -23px;
@@ -4193,7 +4231,7 @@ ul.overview-points li::before {
 }
 
 .quote-page h2.subtitle {
-    color: #183650;
+    color: #231430;
 }
 
 .quote-page form .form-element input,
