@@ -41,7 +41,10 @@ urlpatterns = [
     path('productdetails/<int:producto_id>/', views.detalleproducto, name='PD'),
     path('cart/', views.cart, name='cart'),
     path('cotizar/', views.cotizar, name='cotizar'),
-    
+    path('confirmacion/', views.sendmail, name='sendmail'),
+    path('datos/', views.datos, name='datos'),
+    path('cargaproducto/', views.producto, name='cargaproducto'),
+    path('datosbanco/', views.datosbanco, name='datosbanco'),
     ]
 
 if settings.DEBUG:
