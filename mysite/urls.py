@@ -45,6 +45,7 @@ urlpatterns = [
     path('datos/', views.datos, name='datos'),
     path('cargaproducto/', views.producto, name='cargaproducto'),
     path('datosbanco/', views.datosbanco, name='datosbanco'),
+    path('catproducto/<str:catproducto>/', views.catproducto, name='catproducto'),
     ]
 
 if settings.DEBUG:
