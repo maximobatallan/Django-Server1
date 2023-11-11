@@ -528,6 +528,10 @@ h2.subtitle::after {
     text-align: center;
 }
 
+.imagen-con-bordes-redondeados {
+    border-radius: 50px;
+}
+
 .clearfix::after {
     content: "";
     display: block;
