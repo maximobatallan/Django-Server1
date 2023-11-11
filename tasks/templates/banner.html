@@ -1,0 +1,24 @@
+<!--   cta section start    -->
+<div class="cta-section cta-bg">
+            <div class="col-md-12">
+               <div class="partner-carousel owl-carousel owl-theme border-bottom border-top-lg-0 border-top" >
+
+
+                  {% for cate in cat %}
+              
+                  <div class="single-partner-item" >
+                     <div class="outer">
+                        <div class="inner">
+                           <a href="{% url 'catproducto' cate.cat %}">
+                              <img src="https://imgec.s3.sa-east-1.amazonaws.com/{{ cate.imagen }}" alt="" class="imagen-con-bordes-redondeados">
+                          </a>
+                        </div>
+                     </div>
+                  </div>
+                   {% endfor %}
+               </div>
+            </div>
+    <div class="cta-overlay"></div>
+ </div>
+ 
+ <!--   cta section end    -->   
