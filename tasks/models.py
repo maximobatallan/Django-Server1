@@ -13,10 +13,17 @@ class Task(models.Model):
     def __str__(self):
         return self.title + " " + self.user.username
     
+class Categoria(models.Model):
+    cat = models.CharField(max_length=64)
+    imagen = models.ImageField(upload_to='products/', null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.cat}"
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=64)
     important = models.BooleanField(default=False)
-    cat = models.CharField(max_length=100, null=True)
+    cat = models.CharField(max_length=64)
     descripcion = models.TextField(blank=True)
     precio = models.IntegerField()
     imagen = models.ImageField(upload_to='products/', null=True, blank=True)
@@ -41,3 +48,4 @@ class DatosPersonales(models.Model):
     
     def __str__(self):
         return f"{self.nombre}: {self.nombreempresa}"
+    

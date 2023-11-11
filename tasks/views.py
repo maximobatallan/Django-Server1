@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TaskForm, DatosForm, ProductForm
-from .models import Task, Producto, DatosPersonales
+from .models import Task, Producto, DatosPersonales, Categoria
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -16,6 +16,7 @@ from django.core.mail import send_mail
 
 def home(request):
     productos = Producto.objects.filter(important=True)
+    cat = Categoria.objects.all()
 
     # Creamos un diccionario para agrupar los productos por categoría
     categorias_productos = {}
@@ -23,18 +24,16 @@ def home(request):
     for producto in productos:
         id = producto.id
         categoria = producto.cat
-        print(producto.id)
+     
 
         if categoria in categorias_productos:
             categorias_productos[categoria].append(id)
         else:
             categorias_productos[categoria] = [id]
     
-    # Imprimimos el diccionario
-    #for categoria, producto in categorias_productos.items():
-    print(categorias_productos)   
+  
    
-    return render(request, "home.html", {'categorias_productos': categorias_productos, 'productos': productos} )
+    return render(request, "home.html", {'categorias_productos': categorias_productos, 'productos': productos, 'cat': cat} )
 
 
 
@@ -339,3 +338,10 @@ def datosbanco(request):
     titular = datos_relevantes[0]['titular']
     
     return render(request, "datosbanco.html", {'cbu': cbu, 'titular': titular})
+
+
+
+def catproducto(request, catproducto):
+    productos = Producto.objects.filter(cat = catproducto)
+    cat = Categoria.objects.all()
+    return render(request, "categoriaproducto.html", {'productos': productos, 'cat': cat})
