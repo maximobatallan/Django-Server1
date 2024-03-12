@@ -118,8 +118,7 @@ def task_detail(request, task_id):
             return redirect('tasks')
         except ValueError:
             return render(request, 'task_detail.html', {'task': task, 'form':form, 'error':'Error de actualizacion'})
-        
-        
+
 @login_required
 def datos(request):
     if request.method == 'GET':
@@ -220,8 +219,8 @@ def limpiar_carrito_item(request,producto_id):
 
 def galeriaprueba(request):
     productos = Producto.objects.all()
-   
-    return render(request, "gallery.html", {'productos': productos})
+    cat = Categoria.objects.all()
+    return render(request, "gallery.html", {'productos': productos, 'cat': cat})
 
 
 def detalleproducto(request,producto_id):
@@ -231,6 +230,7 @@ def detalleproducto(request,producto_id):
     
     
 def cart(request):
+    cat = Categoria.objects.all()
     precioanterior = 0
     cantidad = 0
     desc = 0
@@ -256,7 +256,7 @@ def cart(request):
     
             preference_data["items"].append(item)
         desc= int(total_aum - subtotal)
-        total_compra = int(subtotal + 10)
+        total_compra = int(subtotal + 3500)
         
         sdk = mercadopago.SDK("APP_USR-5213772683732349-061323-dc5bd7f2a56c2080735653bb6d1901e7-97277305")
         preference_data["back_urls"] = {
@@ -270,7 +270,7 @@ def cart(request):
         preference_response = sdk.preference().create(preference_data)
         preference = preference_response["response"]
         
-        return render(request, "cart.html", {'preference_id': preference['id'], 'precioanterior': precioanterior,'total_compra': total_compra, 'desc': desc, 'subtotal': subtotal,'desc': desc, 'total_aum': total_aum} )
+        return render(request, "cart.html", {'preference_id': preference['id'],'cat': cat, 'precioanterior': precioanterior,'total_compra': total_compra, 'desc': desc, 'subtotal': subtotal,'desc': desc, 'total_aum': total_aum} )
 
     else: 
         
@@ -333,11 +333,12 @@ def sendmail(request):
     return render(request, "sendmail.html", {'asunto': asunto,'mensaje': mensaje, 'correo': correo, 'cel': cel})
 
 def datosbanco(request):
+    cat = Categoria.objects.all()
     datos_relevantes = DatosPersonales.objects.filter(id=6).values('cbu', 'titular')
     cbu = datos_relevantes[0]['cbu']
     titular = datos_relevantes[0]['titular']
     
-    return render(request, "datosbanco.html", {'cbu': cbu, 'titular': titular})
+    return render(request, "datosbanco.html", {'cbu': cbu, 'titular': titular,'cat': cat,})
 
 
 
