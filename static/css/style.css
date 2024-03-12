@@ -1401,6 +1401,8 @@ ul.search-cart-area {
 .hero-txt {
     position: relative;
     z-index: 2;
+    background: #00000036;
+    padding: 4%;
 }
 
 .hero-overlay {
@@ -2352,7 +2354,7 @@ footer .bottom-footer {
 }
 
 .hero-bg-2 {
-    background-image: url('../img/Fondo.png');
+    background-image: url('../img/imagenes web/Fondo.png');
     background-size: cover;
 }
 
@@ -3092,6 +3094,7 @@ footer .bottom-footer {
     animation-duration: 2s;
     -webkit-animation-delay: .2s;
     animation-delay: .2s
+    
 }
 
 .hero-carousel .owl-item.active .hero-txt a.boxed-btn,
