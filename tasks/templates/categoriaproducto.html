@@ -23,22 +23,7 @@
 
         {% block content %}
 <!--  breadcrumb start  -->
-<div class="breadcrumb-area services-breadcrumb-bg">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg-8">
-            <div class="breadcrumb-txt">
-              
-              
-               <nav aria-label="breadcrumb">
-                  
-               </nav>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="breadcrumb-overlay"></div>
-</div>
+
 <!--  breadcrumb end  -->
 
 
@@ -51,7 +36,7 @@
                     
                     <div class="filter category">
                        <div class="filter-header">
-                          <h5>Category</h5>
+                          <h5>Categoria</h5>
                        </div>
                        <div class="filter-body">
 
@@ -76,18 +61,11 @@
                                 <img src="https://imgec.s3.sa-east-1.amazonaws.com/{{ producto.imagen }}" alt="{{ producto.nombre }}" width="20">
                                 <div class="thumb-overlay">
                                    <div class="circle-container">
-                                      <a class="circle" href="">
+                                      <a class="circle" href="{% url 'PD' producto.id %}">
                                       <i class="fas fa-heart"></i>
-                                      <span class="tooltiptext">Add to Wishlist</span>
+                                      <span class="tooltiptext">Detalles</span>
                                       </a>
-                                      <a class="circle" href="">
-                                      <i class="fas fa-sliders-h"></i>
-                                      <span class="tooltiptext">Add to compare</span>
-                                      </a>
-                                      <a class="circle" href="#" data-toggle="modal" data-target="#quickViewModal">
-                                      <i class="fas fa-search-plus"></i>
-                                      <span class="tooltiptext">Quick View</span>
-                                      </a>
+                                      
                                    </div>
                                 </div>
                              </div>
