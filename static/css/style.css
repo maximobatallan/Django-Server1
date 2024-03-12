@@ -168,8 +168,8 @@ button.boxed-btn {
     font-weight: 600;
     padding: 15px 35px;
     text-align: center;
-    border-radius: 3px;
-    background-color: #bc22b0;
+    border-radius: 7px;
+    background-color: #231430;
     border: none;
     text-decoration: none;
     -webkit-transition: .5s;
@@ -973,7 +973,7 @@ h2.subtitle::after {
 }
 
 .navbar-area nav ul li:hover a {
-    color: #231430;
+    color: #bc22b0;
 }
 
 .navbar-area nav ul li.dropdown {
@@ -1189,9 +1189,7 @@ ul.search-cart-area {
     transition: .5s;
 }
 
-.search-cart-area li a:hover {
-    color: #231430;
-}
+
 
 .shopping-icon span.count {
     position: absolute;
@@ -2128,7 +2126,7 @@ ul.search-cart-area {
 }
 
 .cta-bg {
-    background-image: url('../img/firmabanner.png');
+    background-image: url('../img/banner!.PNG');
     background-size: cover;
 }
 
@@ -2354,7 +2352,7 @@ footer .bottom-footer {
 }
 
 .hero-bg-2 {
-    background-image: url('../img/home_2/hero_bg.jpg');
+    background-image: url('../img/imagenes web/Fondo.png');
     background-size: cover;
 }
 
@@ -2399,8 +2397,9 @@ footer .bottom-footer {
     left: 0px;
     height: 100%;
     width: 100%;
-    background-color: #234966;
-    opacity: .7;
+    background-color: #231430;
+    opacity: 0.6;
+    
 }
 
 .home-2 .comment-content span.title {
@@ -3285,7 +3284,8 @@ footer .bottom-footer {
 ---------------------------*/
 
 .services-breadcrumb-bg {
-    background-image: url('../img/banner.jpg');
+    background-image: url('../img/banner!.PNG');
+    padding: 15%;
     background-size: cover;
     background-position: center center; /* Alinea la imagen en el centro del marco */
     background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
@@ -3513,6 +3513,7 @@ ul.overview-points li::before {
 .pagination-nav {
     font-size: 14px;
     margin-top: 74px;
+    padding: 2%;
 }
 
 .pagination-nav ul.pagination {
