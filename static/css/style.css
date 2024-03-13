@@ -2358,6 +2358,14 @@ footer .bottom-footer {
     background-size: cover;
 }
 
+@media (max-width: 767px) {
+    .hero-bg-2 {
+        background-image: url('../img/Fondocelular.png');
+	background-size: cover;
+    }
+}
+
+
 .home-2.hero-area {
     position: relative;
     padding: 219px 0px 617px 0px;
