@@ -6,9 +6,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Algorithmic Evolution</title>
+      <title>Simulador E-commerce</title>
       <!-- favicon -->
-      <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+      <link rel="shortcut icon" href="{% static 'img/imagenes web/Fondocelular1.png' %}" type="image/x-icon">
       <!-- bootstrap css -->
       <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
       <!-- fontawesome css -->
@@ -31,6 +31,18 @@
       <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
       <!-- jquery js -->
       <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+
+            <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JKS7XCJNW"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6JKS7XCJNW');
+      </script>
+
       
 
       
@@ -49,7 +61,7 @@
                      <div class="logo-wrapper">
                         <div class="logo-wrapper-inner">
           
-                           <a href="{% url 'gallery' %}"><img src="{% static 'img/logoprueba1.png' %}" alt=""></a>
+                           <a href="{% url 'home' %}"><img src="{% static 'img/logoprueba1.png' %}" alt=""></a>
                          
                         </div>
                      </div>
@@ -91,7 +103,7 @@
                                  <ul>
                                    
                                     <li>
-                                       <a href="{% url 'gallery' %}">Galleria</a>
+                                       <a href="{% url 'home' %}">Galleria</a>
                                     </li>
                                     <li class="dropdown">
                                        <a href="#">Categoria</a>
