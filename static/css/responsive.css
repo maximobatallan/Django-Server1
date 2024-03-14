@@ -130,7 +130,7 @@
         left: 0px;
         top: 84px;
         width: 100%;
-        background-color: #183650;
+        background-color: #231430;
         z-index: 10;
     }
     .slicknav_nav a {
@@ -207,7 +207,7 @@
         padding: 30px 0px;
     }
     .navbar-area nav ul li.dropdown ul li {
-        background-color: #1f415f;
+        background-color: #3d195c;
         text-align: left;
     }
     .navbar-area nav ul li.dropdown ul li a {
@@ -215,7 +215,7 @@
         transition: none;
     }
     .navbar-area .slicknav_nav a:hover {
-        background-color: #58bed3;
+        background-color: #3d195c;
         border-radius: 0px;
     }
     .navbar-area nav ul li.dropdown ul li a:hover {
