@@ -218,15 +218,34 @@ def limpiar_carrito_item(request,producto_id):
 
 
 def galeriaprueba(request):
-    productos = Producto.objects.all()
+   
+    productos = Producto.objects.filter(important=True)
     cat = Categoria.objects.all()
-    return render(request, "gallery.html", {'productos': productos, 'cat': cat})
+
+    # Creamos un diccionario para agrupar los productos por categoría
+    categorias_productos = {}
+    
+    for producto in productos:
+        id = producto.id
+        categoria = producto.cat
+     
+
+        if categoria in categorias_productos:
+            categorias_productos[categoria].append(id)
+        else:
+            categorias_productos[categoria] = [id]
+    
+  
+   
+    return render(request, "home.html", {'categorias_productos': categorias_productos, 'productos': productos, 'cat': cat} )
+
+
 
 
 def detalleproducto(request,producto_id):
     producto = Producto.objects.get(id=producto_id)
-   
-    return render(request, "productdetails.html", {'productos': producto})
+    cat = Categoria.objects.all()
+    return render(request, "productdetails.html", {'productos': producto, 'cat' : cat})
     
     
 def cart(request):
