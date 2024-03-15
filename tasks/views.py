@@ -295,7 +295,7 @@ def cart(request):
         
         return redirect("gallery")
     
-    
+'''   
 def cotizar(request):
     if request.method == 'POST':
         print(request)
@@ -330,7 +330,7 @@ def cotizar(request):
         return JsonResponse({'message': 'Cotización exitosa'})  # Puedes retornar una respuesta JSON si lo deseas
 
     return render(request, 'cart.html')  # Reemplaza 'tu_template.html' con la plantilla adecuada
-
+'''
 
 def sendmail(request):
     if request.method == 'POST':
