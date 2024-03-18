@@ -820,6 +820,13 @@ h2.subtitle::after {
     height: 100%;
 }
 
+.logo-wrapper1 {
+    display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+
+}
+
 .logo-wrapper-inner {
     display: table-cell;
     vertical-align: middle;
