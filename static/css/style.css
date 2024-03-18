@@ -2375,13 +2375,13 @@ footer .bottom-footer {
 }
 
 .hero-bg-2 {
-    background-image: url('../img/Fondo.png');
+    background-image: url('../img/Fondo.avif');
     background-size: cover;
 }
 
 @media (max-width: 767px) {
     .hero-bg-2 {
-        background-image: url('../img/Fondocelular.png');
+        background-image: url('../img/Fondocelular.avif');
         background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir el contenedor */
         background-position: center; /* Centra la imagen de fondo */
      
