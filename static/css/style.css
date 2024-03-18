@@ -2215,6 +2215,14 @@ footer .top-footer {
     border-bottom: 2px solid #2e567a;
 }
 
+@media (max-width: 767px) {
+    footer .top-footer {
+        padding: 90px 0px 0px;
+        border-bottom: 2px solid #2e567a;
+        text-align: center;
+    }
+}
+
 footer h4 {
     color: #fff;
     text-transform: uppercase;
