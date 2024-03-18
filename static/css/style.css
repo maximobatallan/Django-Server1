@@ -2266,12 +2266,19 @@ footer ul.userful-links li a::before {
     color: #4ca5bb;
 }
 
+@media (max-width: 767px) {
+.footer-contact .contact-info {
+    margin-bottom: 13px;
+}}
+
+
+@media (min-width: 768px) {
 .footer-contact .contact-info {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    
     margin-bottom: 13px;
-}
+}}
 
 .footer-contact .contact-info i {
     font-size: 16px;
