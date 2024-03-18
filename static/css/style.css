@@ -488,21 +488,7 @@ h2.subtitle::after {
     display: none;
 }
 
-.lb-cancel {
-    background: url(../img/loading.gif) no-repeat;
-}
 
-.lb-nav a.lb-prev {
-    background: url(../img/prev.png) left 48% no-repeat;
-}
-
-.lb-nav a.lb-next {
-    background: url(../img/next.png) right 48% no-repeat;
-}
-
-.lb-data .lb-close {
-    background: url(../img/close.png) top right no-repeat;
-}
 
 .lightbox {
     position: fixed;
@@ -4698,23 +4684,6 @@ div#map {
     width: 100%;
 }
 
-.rate {
-    background-image: url("../img/rate-star.png");
-    background-position: 0 -13px;
-    background-repeat: repeat-x;
-    height: 13px;
-    transition: all 0.5s ease-out 0s;
-    -webkit-transition: all 0.5s ease-out 0s;
-    width: 95px;
-    margin: 0 auto;
-}
-
-.rating {
-    background-image: url("../img/rate-star.png");
-    background-position: 0 0;
-    background-repeat: repeat-x;
-    height: 13px;
-}
 
 .circle .tooltiptext {
     visibility: hidden;
